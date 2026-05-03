@@ -6,7 +6,9 @@ export type EducationItem = {
   school: string;
   degree: string;
   years: string;
+  coursework: string[];
   notes: string;
+  
 };
 
 export type ExperienceItem = {
@@ -19,8 +21,8 @@ export type ExperienceItem = {
 export type SkillGroups = {
   languages: string[];
   frameworks: string[];
-  tools: string[];
-  concepts: string[];
+  devops: string[];
+  machine_learning: string[];
 };
 
 export type ProjectItem = {

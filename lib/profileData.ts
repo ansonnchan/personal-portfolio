@@ -19,7 +19,7 @@ I care about crisp interfaces, resilient services, and tools that give people mo
   resumeFileName: "anson_chan_resume.pdf",
   system: {
     uptime: "3 years in software",
-    build: "v1.0.0",
+    build: "v1.0.1",
     lastUpdated: "May 2026"
   },
   education: [
@@ -27,7 +27,10 @@ I care about crisp interfaces, resilient services, and tools that give people mo
       school: "University of British Columbia",
       degree: "Bachelor of Applied Science - Computer Engineering",
       years: "Expected May 2029",
-      notes: "Dean's List 2024W, 2025W",
+      coursework: ["CPSC 221 - Data Structures and Algorithms", "CPEN 221 - Software Construction I", 
+        "CPEN 211 - Computer Architecture", "CPSC 212 - Operating Systems", "CPSC 330 - Applied Machine Learning"
+      ],
+      notes: "Dean's List 2024W, 2025W"
     }
   ],
   experience: [
@@ -36,8 +39,9 @@ I care about crisp interfaces, resilient services, and tools that give people mo
       company: "Borrow'd",
       period: "January 2026 - April 2026",
       highlights: [
-       "Shipped new features and performance improvements for a consumer lending platform for internal and external users.",
+       "Delivered new features and performance improvements for a consumer lending platform, enhancing internal tooling for operations teams and resolving user-facing issues for end users",
        "Streamlined the CI/CD pipeline by integrating automated testing and deployment workflows, reducing release times by 30%.",
+       "Talked to real humans and touched grass",
       ]
     },
     {
@@ -53,47 +57,30 @@ I care about crisp interfaces, resilient services, and tools that give people mo
     }
   ],
   skills: {
-    languages: ["TypeScript", "Python", "Rust", "SQL"],
-    frameworks: ["Next.js", "React", "FastAPI", "Node.js"],
-    tools: ["Docker", "Git", "PostgreSQL", "Redis", "Vercel"],
-    concepts: ["Systems Design", "ML Workflows", "Distributed Systems", "Observability"]
+    languages: ["Python", "Java", "JavaScript/TypeScript", "C/C++", "SQL", "Assembly"],
+    frameworks: ["React", "Spring Boot", "Next.js", "FastAPI", "Flask", "three.js"],
+    devops: ["AWS", "Docker", "Kubernetes", "Git"],
+    machine_learning: ["PyTorch", "TensorFlow", "LangChain", "OpenCV", "Keras", "Hugging Face"]
   },
   projects: [
     {
-      id: "atlas",
-      name: "Atlas Ops Console",
-      description: "A command-driven operations dashboard for inspecting service health, deployment events, and incident timelines.",
-      stack: ["Next.js", "TypeScript", "PostgreSQL", "Framer Motion"],
-      github: "https://github.com/sohailsarkar/atlas",
-      live: "https://atlas.example.com",
+      id: "portfolio",
+      name: "Portfolio",
+      description: "This website :)",
+      stack: ["TypeScript", "React", "Next.js"],
+      github: "https://github.com/ansonnchan/personal-portfolio",
+      live: "https://ansonnchan.dev",
       featured: true
     },
     {
-      id: "forge",
-      name: "Forge Review Engine",
-      description: "A lightweight code review assistant that turns repository signals into focused engineering checklists.",
-      stack: ["Python", "FastAPI", "React", "Redis"],
-      github: "https://github.com/sohailsarkar/forge",
-      live: "https://forge.example.com",
+      id: "vent.ai",
+      name: "vent.ai",
+      description: "an AI-powered reflection app that lets users explore their thoughts through different personality-driven perspectives. ",
+      stack: ["TypeScript", "React", "Next.js", "Groq SDK"],
+      github: "https://github.com/ansonnchan/vent.ai",
+      live: "https://ventai-web.vercel.app",
       featured: true
     },
-    {
-      id: "signal",
-      name: "Signal Notebook",
-      description: "A research notebook for collecting experiments, comparing model runs, and preserving decision context.",
-      stack: ["React", "TypeScript", "SQLite"],
-      github: "https://github.com/sohailsarkar/signal",
-      live: "https://signal.example.com",
-      featured: false
-    },
-    {
-      id: "pulse",
-      name: "Pulse Habit Loop",
-      description: "A privacy-first habit tracker that emphasizes momentum, reflection, and weekly planning rituals.",
-      stack: ["Next.js", "TypeScript", "Tailwind CSS"],
-      github: "https://github.com/sohailsarkar/pulse",
-      live: "https://pulse.example.com",
-      featured: false
-    }
+    
   ]
 } satisfies Profile;

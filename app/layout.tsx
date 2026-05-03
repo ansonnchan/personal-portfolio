@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "System Interface Portfolio",
-  description: "A command-driven portfolio interface."
+  title: "Anson's Terminal",
+  description: "A command-line portfolio"
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
