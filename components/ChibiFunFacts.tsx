@@ -6,9 +6,14 @@ import { profile } from "@/lib/profileData";
 export function ChibiFunFacts() {
   const facts = useMemo(() => profile.funFacts, []);
   const [factIndex, setFactIndex] = useState<number | null>(null);
+  const [isHidden, setIsHidden] = useState(false);
   const imageSources = [profile.assets.chibi, profile.assets.profileKid, profile.assets.profileCurrent];
   const [imageIndex, setImageIndex] = useState(0);
   const imageSrc = imageSources[imageIndex];
+
+  if (isHidden) {
+    return null;
+  }
 
   return (
     <aside className="grid gap-3 rounded-lg border border-[var(--border)] bg-[var(--bg-panel)] p-3 shadow-panel md:grid-cols-[5rem_1fr]">
@@ -38,29 +43,49 @@ export function ChibiFunFacts() {
             <p className="text-[var(--text-secondary)]">
               Hi, I&apos;m Anson! Click below if you want to know a fun fact about me.
             </p>
-            <button
-              type="button"
-              onClick={() => setFactIndex(0)}
-              className="mt-3 rounded-full border border-[var(--bright-orange)] px-3 py-1 text-[var(--bright-orange)] transition hover:bg-[var(--orange-soft)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
-              aria-label="Reveal a fun fact"
-            >
-              Yes
-            </button>
+            <div className="mt-3 flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setFactIndex(0)}
+                className="rounded-full border border-[var(--bright-orange)] px-3 py-1 text-[var(--bright-orange)] transition hover:bg-[var(--orange-soft)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+                aria-label="Reveal a fun fact"
+              >
+                Yes
+              </button>
+              <button
+                type="button"
+                onClick={() => setIsHidden(true)}
+                className="rounded-full border border-[var(--border)] px-3 py-1 text-[var(--text-muted)] transition hover:border-[var(--bright-orange)] hover:text-[var(--bright-orange)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+                aria-label="Hide Little Anson"
+              >
+                Hide
+              </button>
+            </div>
           </>
         ) : (
           <>
-            <div className="flex items-center justify-between gap-3">
+            <div className="-mt-1 flex items-center justify-between gap-3">
               <span className="font-bold text-[var(--bright-orange)]">Fun Fact</span>
-              <button
-                type="button"
-                onClick={() => setFactIndex((current) => (current === null ? 0 : (current + 1) % facts.length))}
-                className="rounded-full border border-[var(--bright-orange)] px-2.5 py-1 text-[var(--bright-orange)] transition hover:bg-[var(--orange-soft)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
-                aria-label="Show another fun fact"
-              >
-                Refresh
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setFactIndex((current) => (current === null ? 0 : (current + 1) % facts.length))}
+                  className="rounded-full border border-[var(--bright-orange)] px-2.5 py-1 text-[var(--bright-orange)] transition hover:bg-[var(--orange-soft)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+                  aria-label="Show another fun fact"
+                >
+                  Refresh
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIsHidden(true)}
+                  className="rounded-full border border-[var(--border)] px-2.5 py-1 text-[var(--text-muted)] transition hover:border-[var(--bright-orange)] hover:text-[var(--bright-orange)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+                  aria-label="Hide Little Anson"
+                >
+                  Hide
+                </button>
+              </div>
             </div>
-            <p className="mt-2 text-[var(--text-secondary)]">{facts[factIndex]}</p>
+            <p className="mt-1 text-[var(--text-secondary)]">{facts[factIndex]}</p>
           </>
         )}
       </div>

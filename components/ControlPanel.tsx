@@ -79,6 +79,10 @@ function moduleKey(command: string) {
     return "whereis";
   }
 
+  if (command === "open nostalgia") {
+    return "nostalgia";
+  }
+
   if (command.startsWith("wget ")) {
     return "resume";
   }

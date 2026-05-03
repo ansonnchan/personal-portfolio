@@ -1,0 +1,93 @@
+"use client";
+
+import { useState } from "react";
+
+const photos = [
+  "/assets/IMG_0192.JPG",
+  "/assets/IMG_0668.JPG",
+  "/assets/IMG_0734.JPG",
+  "/assets/IMG_0916.JPG",
+  "/assets/IMG_1953.JPG",
+  "/assets/IMG_2256.JPG"
+];
+
+const captions = [
+  "Placeholder caption 01",
+  "Placeholder caption 02",
+  "Placeholder caption 03",
+  "Placeholder caption 04",
+  "Placeholder caption 05",
+  "Placeholder caption 06"
+];
+
+export function NostalgiaOutput() {
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const selectedPhoto = selectedIndex === null ? null : photos[selectedIndex];
+  const selectedCaption = selectedIndex === null ? "" : captions[selectedIndex];
+
+  return (
+    <div className="space-y-6">
+      <section className="rounded-lg border border-[var(--border)] bg-[var(--bg-panel)] p-5">
+        <p className="text-sm leading-6 text-[var(--text-secondary)]">
+          I hope you enjoy these old photos of mine. I was doing some digging and spent a lot of time laughing,
+          reminiscing, and feeling grateful for the old days. I found this quote online and loved the reminder:
+          you only get one chance to live this life, so take a little time to look back at the moments that made you.
+        </p>
+
+        <figure className="mt-5 border-l-4 border-[var(--bright-orange)] bg-[var(--orange-soft)] px-4 py-4">
+          <blockquote className="font-mono text-base leading-7 text-[var(--text-primary)]">
+            “One day, you&apos;re 17 and you&apos;re planning for someday. And then quietly, without you ever really noticing,
+            someday is today. And then someday is yesterday. And this is your life.”
+          </blockquote>
+          <figcaption className="mt-3 text-sm font-semibold text-[var(--bright-orange)]">– John Green</figcaption>
+        </figure>
+      </section>
+
+      <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {photos.map((photo, index) => (
+          <button
+            key={photo}
+            type="button"
+            onClick={() => setSelectedIndex(index)}
+            className="group overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--bg-panel)] text-left transition hover:border-[var(--bright-orange)] hover:shadow-lift focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={photo}
+              alt=""
+              className="aspect-[4/3] w-full object-cover transition duration-200 group-hover:scale-[1.02]"
+            />
+            <span className="block px-3 py-2 font-mono text-xs text-[var(--bright-orange)]">{captions[index]}</span>
+          </button>
+        ))}
+      </section>
+
+      {selectedPhoto ? (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setSelectedIndex(null)}
+        >
+          <figure
+            className="max-h-[90vh] max-w-4xl overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--bg-panel)] shadow-lift"
+            onClick={(event) => event.stopPropagation()}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={selectedPhoto} alt="" className="max-h-[78vh] w-full object-contain" />
+            <figcaption className="flex items-center justify-between gap-3 px-4 py-3 font-mono text-xs text-[var(--bright-orange)]">
+              <span>{selectedCaption}</span>
+              <button
+                type="button"
+                onClick={() => setSelectedIndex(null)}
+                className="rounded-full border border-[var(--border)] px-3 py-1 text-[var(--text-secondary)] hover:border-[var(--bright-orange)] hover:text-[var(--bright-orange)]"
+              >
+                close
+              </button>
+            </figcaption>
+          </figure>
+        </div>
+      ) : null}
+    </div>
+  );
+}

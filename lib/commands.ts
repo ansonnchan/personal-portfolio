@@ -4,6 +4,7 @@ import { ContactOutput } from "@/components/outputs/ContactOutput";
 import { EducationOutput } from "@/components/outputs/EducationOutput";
 import { ExperienceOutput } from "@/components/outputs/ExperienceOutput";
 import { HelpOutput } from "@/components/outputs/HelpOutput";
+import { NostalgiaOutput } from "@/components/outputs/NostalgiaOutput";
 import { OpenProjectOutput, ProjectsOutput } from "@/components/outputs/ProjectsOutput";
 import { ResumeOutput } from "@/components/outputs/ResumeOutput";
 import { SkillsOutput } from "@/components/outputs/SkillsOutput";
@@ -29,6 +30,7 @@ const commandSpecs = [
   { name: "cd projects", description: "Show all projects", activeModule: "projects" },
   { name: "ls ./skills/", description: "Show grouped technical stack", activeModule: "skills" },
   { name: "open [project-id]", description: "Print detailed CLI output for a project", activeModule: "projects" },
+  { name: "open nostalgia", description: "Open old-photo gallery", activeModule: "nostalgia" },
   { name: "cat experience.txt [id]", description: "Print detailed CLI output for an experience", activeModule: "experience" },
   { name: "whereis socials", description: "Show links and email", activeModule: "whereis" },
   { name: "wget resume.pdf", description: "Download resume with terminal progress", activeModule: "resume" },
@@ -62,7 +64,8 @@ export const moduleSections = [
     title: "BUILD",
     items: [
       { command: "cd projects", description: "All projects" },
-      { command: "ls ./skills/", description: "Technical stack" }
+      { command: "ls ./skills/", description: "Technical stack" },
+      { command: "open nostalgia", description: "Old photos" }
     ]
   },
   {
@@ -143,20 +146,24 @@ export const commandRegistry: Record<string, CommandDefinition> = {
 
     return React.createElement(UnknownOutput, { command: `ls ${args.join(" ")}` });
   }),
-  open: defineCommand(commandSpecs[7], (args) => React.createElement(OpenProjectOutput, { projectId: args[0] ?? "" })),
-  whereis: defineCommand(commandSpecs[9], (args) =>
+  open: defineCommand(commandSpecs[7], (args) =>
+    args[0]?.toLowerCase() === "nostalgia"
+      ? React.createElement(NostalgiaOutput)
+      : React.createElement(OpenProjectOutput, { projectId: args[0] ?? "" })
+  ),
+  whereis: defineCommand(commandSpecs[10], (args) =>
     args[0]?.toLowerCase() === "socials"
       ? React.createElement(ContactOutput)
       : React.createElement(UnknownOutput, { command: `whereis ${args.join(" ")}` })
   ),
-  wget: defineCommand(commandSpecs[10], (args) =>
+  wget: defineCommand(commandSpecs[11], (args) =>
     args[0]?.toLowerCase() === "resume.pdf"
       ? React.createElement(ResumeOutput)
       : React.createElement(UnknownOutput, { command: `wget ${args.join(" ")}` })
   ),
-  resume: defineCommand(commandSpecs[10], () => React.createElement(ResumeOutput)),
-  system: defineCommand(commandSpecs[11], () => React.createElement(SystemOutput, { modules: loadedModules })),
-  clear: defineCommand(commandSpecs[12], () => null)
+  resume: defineCommand(commandSpecs[11], () => React.createElement(ResumeOutput)),
+  system: defineCommand(commandSpecs[12], () => React.createElement(SystemOutput, { modules: loadedModules })),
+  clear: defineCommand(commandSpecs[13], () => null)
 };
 
 export function splitCommand(input: string) {
@@ -192,8 +199,10 @@ export function parseCommand(input: string) {
         ? activeModuleByCatFile[args[0]?.toLowerCase() ?? ""] ?? null
         : base === "cd" && args[0]?.toLowerCase() === "projects"
           ? "projects"
-          : base === "ls" && args[0]?.toLowerCase().startsWith("./skills")
-            ? "skills"
+        : base === "ls" && args[0]?.toLowerCase().startsWith("./skills")
+          ? "skills"
+          : base === "open" && args[0]?.toLowerCase() === "nostalgia"
+            ? "nostalgia"
             : command.activeModule ?? null
   };
 }
@@ -237,6 +246,10 @@ export function autocompleteCommand(input: string) {
 
   if (lower.startsWith("open ")) {
     const projectQuery = lower.slice(5);
+    if ("nostalgia".startsWith(projectQuery)) {
+      return `${leadingSpace}open nostalgia`;
+    }
+
     const match = profile.projects.find((project) => project.id.toLowerCase().startsWith(projectQuery));
     return match ? `${leadingSpace}open ${match.id}` : input;
   }

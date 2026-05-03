@@ -3,6 +3,14 @@
 import { profile } from "@/lib/profileData";
 import type { ExperienceItem } from "@/types";
 
+function organizationIcon(company: string) {
+  if (company === "Borrow'd") {
+    return "/assets/borrowd_org_logo.jpeg";
+  }
+
+  return "/assets/unisa-logo.svg";
+}
+
 function HighlightText({ text }: { text: string }) {
   const highlighted = text.replace(/(30%|large-scale|deterministic|consumer lending|MATLAB|CI\/CD|automated testing)/gi, "§$1§");
   return (
@@ -28,7 +36,15 @@ function ExperienceDetail({ job }: { job: ExperienceItem }) {
         <span className="text-[var(--text-muted)]">role</span>
         <span>{job.role}</span>
         <span className="text-[var(--text-muted)]">company</span>
-        <span>{job.company}</span>
+        <span className="flex items-center gap-2">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={organizationIcon(job.company)}
+            alt=""
+            className="h-6 w-6 shrink-0 rounded border border-[var(--border)] bg-white object-contain p-0.5"
+          />
+          {job.company}
+        </span>
         <span className="text-[var(--text-muted)]">dates</span>
         <span>{job.period}</span>
       </div>
@@ -71,9 +87,17 @@ export function ExperienceOutput({ detailId = "" }: { detailId?: string }) {
           className="rounded-lg border border-[var(--border)] bg-[var(--bg-panel)] p-4 shadow-sm"
         >
           <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-            <div>
-              <h3 className="font-mono text-base font-semibold text-[var(--text-primary)]">{job.role}</h3>
-              <p className="mt-1 text-sm text-[var(--link)]">{job.company}</p>
+            <div className="flex min-w-0 items-start gap-3">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={organizationIcon(job.company)}
+                alt=""
+                className="mt-0.5 h-8 w-8 shrink-0 rounded-md border border-[var(--border)] bg-white object-contain p-1"
+              />
+              <div className="min-w-0">
+                <h3 className="font-mono text-base font-semibold text-[var(--text-primary)]">{job.role}</h3>
+                <p className="mt-1 text-sm text-[var(--link)]">{job.company}</p>
+              </div>
             </div>
             <div className="text-left sm:text-right">
               <span className="block text-xs text-[var(--text-secondary)]">{job.period}</span>

@@ -19,7 +19,7 @@ I care about crisp interfaces, resilient services, and tools that give people mo
   resumeFileName: "anson_chan_resume.pdf",
   assets: {
     favicon: "/assets/favicon.png",
-    profileCurrent: "/assets/adult_pfp.png",
+    profileCurrent: "/assets/adult_pfp-modified.png",
     profileKid: "/assets/kid_pfp-modified.png",
     chibi: "/assets/chibi.png",
     resumeIcon: "/assets/resume-icon.svg"
