@@ -92,36 +92,46 @@ export function MusicPlayer() {
       ) : (
         <div className="space-y-2">
           <div className="flex items-start gap-2">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/assets/midnight-wolfie.png"
-              alt=""
-              className={[
-                "h-14 w-14 shrink-0 rounded-lg border border-[var(--border)] bg-transparent object-cover",
-                isPlaying ? "music-art--playing" : "music-art--idle"
-              ].join(" ")}
-            />
-            <div className="min-w-0 flex-1">
-              <p className="font-mono text-[10px] leading-4 text-[var(--text-primary)]">Fly Me to the Moon (Lofi ver.)</p>
-              <p className="font-mono text-[9px] leading-4 text-[var(--text-muted)]">MidnightWolfie</p>
-              <p className="font-mono text-[9px] leading-4 text-[var(--bright-orange)]">Copyright Free</p>
-              <div className="mt-1 flex items-center gap-1.5">
+            <div className="shrink-0">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/assets/midnight-wolfie.png"
+                alt=""
+                className={[
+                  "h-14 w-14 rounded-lg border border-[var(--border)] bg-transparent object-cover",
+                  isPlaying ? "music-art--playing" : "music-art--idle"
+                ].join(" ")}
+              />
+              <div className="mt-1 flex justify-center gap-1.5">
                 <button
                   type="button"
                   onClick={togglePlayback}
                   className="music-control"
                   aria-label={isPlaying ? "Pause music" : "Play music"}
                 >
-                  {isPlaying ? "Ⅱ" : "▶"}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={isPlaying ? "/assets/pause_circle_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" : "/assets/play_circle_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg"}
+                    alt=""
+                    className="h-7 w-7"
+                  />
                 </button>
                 <button
                   type="button"
                   onClick={() => setIsMuted((current) => !current)}
-                  className="music-control text-[11px]"
+                  className="music-control"
                   aria-label={isMuted ? "Unmute music" : "Mute music"}
                 >
-                  {isMuted ? "M" : "♪"}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/assets/volume_off_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="" className="h-7 w-7" />
                 </button>
+              </div>
+            </div>
+            <div className="min-w-0 flex-1">
+              <p className="font-mono text-[10px] leading-4 text-[var(--text-primary)]">Fly Me to the Moon (Lofi ver.)</p>
+              <p className="font-mono text-[9px] leading-4 text-[var(--text-muted)]">MidnightWolfie</p>
+              <p className="font-mono text-[9px] leading-4 text-[var(--bright-orange)]">Copyright Free</p>
+              <div className="mt-2 flex items-center gap-1.5">
                 <button
                   type="button"
                   onClick={() => adjustVolume(-0.08)}
@@ -145,14 +155,13 @@ export function MusicPlayer() {
 
           <div className="rounded-md border border-[var(--border)] bg-[var(--bg-elevated)] p-2">
             <div className="min-w-0 flex-1">
-              <p className="font-mono text-[10px] font-semibold text-[var(--bright-orange)]">Countdown to my Birthday!!</p>
+              <p className="font-mono text-[10px] font-semibold text-[var(--bright-orange)]">birthday.exe</p>
               <p className="mt-1 font-mono text-sm font-semibold text-[var(--text-primary)]">{compactBirthday(remaining)}</p>
             </div>
           </div>
 
           <div className="rounded border border-[var(--border)] bg-[var(--bg-elevated)] px-2 py-1">
-            <p className="font-mono text-[9px] text-[var(--text-secondary)]">Fly Me to the Moon (Lofi ver.) - MidnightWolfie</p>
-            <p className="font-mono text-[9px] text-[var(--text-muted)]">Original ver. By Frank Sinatra</p>
+            <p className="font-mono text-[9px] text-[var(--text-muted)]">Original ver. by Frank Sinatra</p>
           </div>
         </div>
       )}

@@ -155,24 +155,24 @@ input {
 
 .music-control {
   display: inline-flex;
-  height: 2rem;
-  width: 2rem;
+  height: 2.25rem;
+  width: 2.25rem;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--accent);
+  border: 1px solid var(--bright-orange);
   border-radius: 999px;
-  background: var(--bg-panel);
+  background: var(--accent);
   color: var(--accent);
   font-family: var(--font-mono);
   font-size: 0.9rem;
   font-weight: 800;
   line-height: 1;
-  box-shadow: 0 0 0 2px var(--orange-soft);
+  box-shadow: 0 0 0 2px var(--orange-soft), 0 4px 10px rgba(0, 0, 0, 0.12);
   transition: background 160ms ease, color 160ms ease, transform 160ms ease;
 }
 
 .music-control:hover {
-  background: var(--orange-soft);
+  background: var(--bright-orange);
   transform: translateY(-1px);
 }
 
