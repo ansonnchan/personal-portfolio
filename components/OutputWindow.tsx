@@ -22,7 +22,6 @@ const welcomeLines = [
   `${profile.name}'s terminal ready.`,
   "Type 'help', 'ls', or select a command from the left.",
   "",
-  `visitor@${profile.handle} ~ %`
 ];
 
 const readyLine = `${profile.name}'s terminal ready.`;

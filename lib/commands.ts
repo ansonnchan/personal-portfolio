@@ -39,7 +39,7 @@ const commandSpecs = [
     description: "Show work history and impact notes", 
     activeModule: "experience" },
   { name: "cd projects", 
-    description: "Show all projects", 
+    description: "View all projects", 
     activeModule: "projects" },
   { name: "ls ./skills/", 
     description: "Show tech stack", 

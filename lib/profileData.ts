@@ -35,7 +35,7 @@ I care about crisp interfaces, resilient services, and tools that give people mo
     "I peaked Platinum in League of Legends."
   ],
   system: {
-    uptime: "3 years in software",
+    uptime: "15 days, 4 hours, 12 minutes", // This will be dynamically calculated in the SystemOutput component
     build: "v1.0.1",
     lastUpdated: "May 2026"
   },
