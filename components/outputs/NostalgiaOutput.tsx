@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const photos = [
   "/assets/IMG_0192.JPG",
@@ -24,6 +24,39 @@ export function NostalgiaOutput() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const selectedPhoto = selectedIndex === null ? null : photos[selectedIndex];
   const selectedCaption = selectedIndex === null ? "" : captions[selectedIndex];
+
+  function showPrevious() {
+    setSelectedIndex((current) => (current === null ? photos.length - 1 : (current + photos.length - 1) % photos.length));
+  }
+
+  function showNext() {
+    setSelectedIndex((current) => (current === null ? 0 : (current + 1) % photos.length));
+  }
+
+  useEffect(() => {
+    if (selectedIndex === null) {
+      return;
+    }
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        showPrevious();
+      }
+
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        showNext();
+      }
+
+      if (event.key === "Escape") {
+        setSelectedIndex(null);
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedIndex]);
 
   return (
     <div className="space-y-6">
@@ -69,8 +102,30 @@ export function NostalgiaOutput() {
           aria-modal="true"
           onClick={() => setSelectedIndex(null)}
         >
+          <button
+            type="button"
+            onClick={(event) => {
+              event.stopPropagation();
+              showPrevious();
+            }}
+            className="absolute left-4 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--bg-panel)]/90 font-mono text-xl text-[var(--bright-orange)] transition hover:bg-[var(--orange-soft)]"
+            aria-label="Previous photo"
+          >
+            ‹
+          </button>
+          <button
+            type="button"
+            onClick={(event) => {
+              event.stopPropagation();
+              showNext();
+            }}
+            className="absolute right-4 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--bg-panel)]/90 font-mono text-xl text-[var(--bright-orange)] transition hover:bg-[var(--orange-soft)]"
+            aria-label="Next photo"
+          >
+            ›
+          </button>
           <figure
-            className="max-h-[90vh] max-w-4xl overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--bg-panel)] shadow-lift"
+            className="relative max-h-[90vh] max-w-4xl overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--bg-panel)] shadow-lift"
             onClick={(event) => event.stopPropagation()}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}

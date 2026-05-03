@@ -12,7 +12,23 @@ export function ChibiFunFacts() {
   const imageSrc = imageSources[imageIndex];
 
   if (isHidden) {
-    return null;
+    return (
+      <button
+        type="button"
+        onClick={() => setIsHidden(false)}
+        className="group flex items-center gap-3 rounded-lg border border-[var(--border)] bg-[var(--bg-panel)] p-3 text-left shadow-panel transition hover:border-[var(--bright-orange)] hover:bg-[var(--orange-soft)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+        aria-label="Bring Little Anson back"
+      >
+        <span className="relative flex h-14 w-14 shrink-0 items-end justify-center overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/assets/mischevious.png" alt="" className="h-full w-full object-cover transition group-hover:translate-y-1" />
+          <span className="absolute bottom-0 h-4 w-full bg-[var(--bg-panel)]/90" aria-hidden="true" />
+        </span>
+        <span className="font-mono text-xs leading-5 text-[var(--text-secondary)]">
+          ohoho... so you <span className="text-[var(--bright-orange)]">do</span> want to know more about me?
+        </span>
+      </button>
+    );
   }
 
   return (
@@ -64,9 +80,11 @@ export function ChibiFunFacts() {
           </>
         ) : (
           <>
-            <div className="-mt-1 flex items-center justify-between gap-3">
+            <div className="-mt-1">
               <span className="font-bold text-[var(--bright-orange)]">Fun Fact</span>
-              <div className="flex items-center gap-2">
+            </div>
+            <p className="mt-1 text-[var(--text-secondary)]">{facts[factIndex]}</p>
+            <div className="mt-3 flex items-center justify-end gap-2">
                 <button
                   type="button"
                   onClick={() => setFactIndex((current) => (current === null ? 0 : (current + 1) % facts.length))}
@@ -83,9 +101,7 @@ export function ChibiFunFacts() {
                 >
                   Hide
                 </button>
-              </div>
             </div>
-            <p className="mt-1 text-[var(--text-secondary)]">{facts[factIndex]}</p>
           </>
         )}
       </div>

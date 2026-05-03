@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { BirthdayCountdown } from "@/components/BirthdayCountdown";
 import { ChibiFunFacts } from "@/components/ChibiFunFacts";
 import { ControlPanel } from "@/components/ControlPanel";
 import { OutputWindow } from "@/components/OutputWindow";
@@ -134,6 +135,9 @@ export function SystemInterface() {
               onCommand={terminal.runCommand}
             >
               <ChibiFunFacts />
+              <div className="mt-3">
+                <BirthdayCountdown />
+              </div>
             </ControlPanel>
           </div>
           <OutputWindow

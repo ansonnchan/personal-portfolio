@@ -28,7 +28,7 @@ function ChromeDots() {
     oscillator.frequency.setValueAtTime(660, context.currentTime);
     oscillator.frequency.exponentialRampToValueAtTime(990, context.currentTime + 0.08);
     gain.gain.setValueAtTime(0.0001, context.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.045, context.currentTime + 0.01);
+    gain.gain.exponentialRampToValueAtTime(0.12, context.currentTime + 0.01);
     gain.gain.exponentialRampToValueAtTime(0.0001, context.currentTime + 0.13);
 
     oscillator.connect(gain);
@@ -104,7 +104,7 @@ export function ControlPanel({ activeModule, onCommand, children }: ControlPanel
         className="flex min-h-0 flex-1 gap-4 overflow-auto p-3 lg:block lg:space-y-6 lg:p-4"
         aria-label="Portfolio command modules"
       >
-        <h2 className="mb-4 min-w-[14rem] shrink-0 font-sans text-sm font-extrabold text-[var(--bright-orange)] lg:min-w-0">
+        <h2 className="mb-4 min-w-[14rem] shrink-0 text-center font-sans text-sm font-semibold text-[var(--bright-orange)] lg:min-w-0">
           Try These Commands
         </h2>
         {moduleSections.map((section) => (

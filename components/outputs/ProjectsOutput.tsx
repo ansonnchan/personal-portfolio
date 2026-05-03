@@ -1,7 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import { profile } from "@/lib/profileData";
 import type { ProjectItem } from "@/types";
+
+const projectShots = [
+  "/assets/favicon.png",
+  "/assets/resume-icon.svg"
+];
 
 function ProjectLinks({ project }: { project: ProjectItem }) {
   const links = [
@@ -32,6 +38,8 @@ function ProjectLinks({ project }: { project: ProjectItem }) {
 }
 
 export function ProjectsOutput() {
+  const [previewProjectId, setPreviewProjectId] = useState<string | null>(null);
+
   return (
     <div className="space-y-6">
       {profile.projects.map((project) => (
@@ -50,6 +58,28 @@ export function ProjectsOutput() {
             <li>- {project.problem}</li>
             <li>- Add a project achievement here.</li>
           </ul>
+
+          <button
+            type="button"
+            onClick={() => setPreviewProjectId((current) => (current === project.id ? null : project.id))}
+            className="mt-4 rounded-full border border-[var(--border)] px-3 py-1.5 font-mono text-xs text-[var(--bright-orange)] transition hover:border-[var(--bright-orange)] hover:bg-[var(--orange-soft)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+          >
+            {previewProjectId === project.id ? "hide screenshots" : "view screenshots"}
+          </button>
+
+          {previewProjectId === project.id ? (
+            <div className="mt-3 grid gap-3 sm:grid-cols-2">
+              {projectShots.map((shot, index) => (
+                <figure key={shot} className="rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-3">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={shot} alt="" className="aspect-video w-full rounded border border-[var(--border)] bg-white object-contain p-4" />
+                  <figcaption className="mt-2 font-mono text-xs text-[var(--text-muted)]">
+                    Screenshot placeholder {index + 1}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          ) : null}
 
           <ProjectLinks project={project} />
         </article>

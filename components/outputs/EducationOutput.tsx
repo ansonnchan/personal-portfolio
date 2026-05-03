@@ -22,7 +22,7 @@ export function EducationOutput() {
               <img
                 src={schoolIcon(item.school)}
                 alt=""
-                className="mt-0.5 h-8 w-8 shrink-0 rounded-md border border-[var(--border)] bg-white object-contain p-1"
+                className="mt-0.5 h-11 w-11 shrink-0 rounded-md border border-[var(--border)] bg-white object-contain p-1.5"
               />
               <div className="min-w-0">
                 <h3 className="font-mono text-base font-semibold text-[var(--text-primary)]">{item.school}</h3>

@@ -42,7 +42,7 @@ function playDisabledClick() {
   oscillator.frequency.setValueAtTime(660, context.currentTime);
   oscillator.frequency.exponentialRampToValueAtTime(990, context.currentTime + 0.08);
   gain.gain.setValueAtTime(0.0001, context.currentTime);
-  gain.gain.exponentialRampToValueAtTime(0.045, context.currentTime + 0.01);
+  gain.gain.exponentialRampToValueAtTime(0.12, context.currentTime + 0.01);
   gain.gain.exponentialRampToValueAtTime(0.0001, context.currentTime + 0.13);
 
   oscillator.connect(gain);
@@ -121,7 +121,7 @@ function CommandBlockView({ block }: { block: CommandBlock }) {
   const blockRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    if (block.command === "cd projects") {
+    if (block.command === "cd projects" || block.command === "open nostalgia") {
       blockRef.current?.scrollIntoView({ block: "start" });
     }
   }, [block.command]);
@@ -149,7 +149,7 @@ export function OutputWindow({
   const lastCommand = history[history.length - 1]?.command;
 
   useEffect(() => {
-    if (lastCommand === "cd projects") {
+    if (lastCommand === "cd projects" || lastCommand === "open nostalgia") {
       return;
     }
 
@@ -212,12 +212,24 @@ export function OutputWindow({
         <div className="flex h-10 items-center gap-3 border-b border-[var(--border)] bg-[var(--bg-elevated)] px-3">
           <ChromeDots
             onMinimize={() => {
-              setIsMaximized(false);
+              if (isMaximized) {
+                setIsMaximized(false);
+                setIsMinimized(false);
+                return;
+              }
+
               setIsMinimized(true);
             }}
             onMaximize={() => {
-              setIsMinimized(false);
-              setIsMaximized((current) => !current);
+              if (isMinimized) {
+                setIsMinimized(false);
+                setIsMaximized(false);
+                return;
+              }
+
+              if (!isMaximized) {
+                setIsMaximized(true);
+              }
             }}
           />
           <span className="font-mono text-xs font-semibold text-[var(--text-muted)]">

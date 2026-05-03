@@ -41,7 +41,7 @@ function ExperienceDetail({ job }: { job: ExperienceItem }) {
           <img
             src={organizationIcon(job.company)}
             alt=""
-            className="h-6 w-6 shrink-0 rounded border border-[var(--border)] bg-white object-contain p-0.5"
+            className="h-7 w-7 shrink-0 rounded border border-[var(--border)] bg-white object-contain p-1"
           />
           {job.company}
         </span>
@@ -92,7 +92,7 @@ export function ExperienceOutput({ detailId = "" }: { detailId?: string }) {
               <img
                 src={organizationIcon(job.company)}
                 alt=""
-                className="mt-0.5 h-8 w-8 shrink-0 rounded-md border border-[var(--border)] bg-white object-contain p-1"
+                className="mt-0.5 h-11 w-11 shrink-0 rounded-md border border-[var(--border)] bg-white object-contain p-1.5"
               />
               <div className="min-w-0">
                 <h3 className="font-mono text-base font-semibold text-[var(--text-primary)]">{job.role}</h3>
