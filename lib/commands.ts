@@ -2,15 +2,14 @@ import React from "react";
 import { AboutOutput } from "@/components/outputs/AboutOutput";
 import { ContactOutput } from "@/components/outputs/ContactOutput";
 import { EducationOutput } from "@/components/outputs/EducationOutput";
-import { ExperienceOutput } from "@/components/outputs/ExperienceOutput";
+import { ArchivedExperienceOutput, ExperienceOutput } from "@/components/outputs/ExperienceOutput";
 import { HelpOutput } from "@/components/outputs/HelpOutput";
 import { NostalgiaOutput } from "@/components/outputs/NostalgiaOutput";
-import { OpenProjectOutput, ProjectsOutput } from "@/components/outputs/ProjectsOutput";
+import { ProjectsOutput } from "@/components/outputs/ProjectsOutput";
 import { ResumeOutput } from "@/components/outputs/ResumeOutput";
 import { SkillsOutput } from "@/components/outputs/SkillsOutput";
 import { SystemOutput } from "@/components/outputs/SystemOutput";
 import { UnknownOutput } from "@/components/outputs/UnknownOutput";
-import { profile } from "@/lib/profileData";
 import type { CommandDefinition } from "@/types";
 
 type CommandSpec = {
@@ -19,7 +18,7 @@ type CommandSpec = {
   activeModule?: string | null;
 };
 
-const portfolioFiles = ["about.txt", "education.txt", "experience.txt", "projects/", "skills/", "resume.pdf"];
+const portfolioFiles = ["about.txt", "education.txt", "experience.txt", "archives/old_experience.txt", "projects/", "skills/", "resume.pdf"];
 
 const commandSpecs = [
   { name: "help", 
@@ -112,6 +111,7 @@ const activeModuleByCatFile: Record<string, string> = {
   "about.txt": "about",
   "education.txt": "education",
   "experience.txt": "experience",
+  "archives/old_experience.txt": "experience",
   "projects.txt": "projects",
   "skills.txt": "skills"
 };
@@ -125,6 +125,41 @@ function defineCommand(spec: CommandSpec, handler: CommandDefinition["handler"])
   };
 }
 
+function PortfolioTreeOutput() {
+  const tree = [
+    { path: "app/", note: "routes, layout, globals" },
+    { path: "components/", note: "terminal windows + output views" },
+    { path: "lib/", note: "profile data + commands" },
+    { path: "projects/", note: "> portfolio, vent.ai, borrow'd, contact card" },
+    { path: "skills/", note: "languages, frameworks, cloud_devops, ai_ml" },
+    { path: "public/assets/", note: "icons, photos, resume, audio" }
+  ];
+
+  return React.createElement(
+    "div",
+    { className: "space-y-2 font-mono text-sm leading-6" },
+    React.createElement(
+      "p",
+      { className: "text-[var(--text-secondary)]" },
+      React.createElement("span", { className: "text-[var(--accent-green)]" }, "personal-portfolio/"),
+      " architecture"
+    ),
+    React.createElement(
+      "div",
+      { className: "rounded-md border border-[var(--border)] bg-[var(--bg-elevated)] p-3" },
+      tree.map((item, index) =>
+        React.createElement(
+          "p",
+          { key: item.path, className: "flex flex-wrap gap-x-2" },
+          React.createElement("span", { className: "text-[var(--text-muted)]" }, index === tree.length - 1 ? "`--" : "|--"),
+          React.createElement("span", { className: "text-[var(--accent-green)]" }, item.path),
+          React.createElement("span", { className: "text-[var(--text-secondary)]" }, item.note)
+        )
+      )
+    )
+  );
+}
+
 export const commandRegistry: Record<string, CommandDefinition> = {
   help: defineCommand(commandSpecs[0], () => React.createElement(HelpOutput, { commands: helpCommands })),
   cat: defineCommand(commandSpecs[2], (args) => {
@@ -134,6 +169,7 @@ export const commandRegistry: Record<string, CommandDefinition> = {
     if (file === "about.txt") return React.createElement(AboutOutput);
     if (file === "education.txt") return React.createElement(EducationOutput);
     if (file === "experience.txt") return React.createElement(ExperienceOutput, { detailId });
+    if (file === "archives/old_experience.txt") return React.createElement(ArchivedExperienceOutput);
     if (file === "projects.txt") return React.createElement(ProjectsOutput);
     if (file === "skills.txt") return React.createElement(SkillsOutput);
 
@@ -157,20 +193,7 @@ export const commandRegistry: Record<string, CommandDefinition> = {
     }
 
     if (!target) {
-      return React.createElement(
-        "div",
-        { className: "grid gap-2 sm:grid-cols-3" },
-        portfolioFiles.map((file) =>
-          React.createElement(
-            "code",
-            {
-              key: file,
-              className: "rounded-md border border-[var(--border)] bg-[var(--bg-elevated)] px-3 py-2 text-[var(--accent-green)]"
-            },
-            file
-          )
-        )
-      );
+      return React.createElement(PortfolioTreeOutput);
     }
 
     return React.createElement(UnknownOutput, { command: `ls ${args.join(" ")}` });
@@ -178,7 +201,7 @@ export const commandRegistry: Record<string, CommandDefinition> = {
   open: defineCommand(commandSpecs[7], (args) =>
     args[0]?.toLowerCase() === "nostalgia"
       ? React.createElement(NostalgiaOutput)
-      : React.createElement(OpenProjectOutput, { projectId: args[0] ?? "" })
+      : React.createElement(UnknownOutput, { command: `open ${args.join(" ")}` })
   ),
   whereis: defineCommand(commandSpecs[9], (args) =>
     args[0]?.toLowerCase() === "socials"
@@ -274,13 +297,11 @@ export function autocompleteCommand(input: string) {
   }
 
   if (lower.startsWith("open ")) {
-    const projectQuery = lower.slice(5);
-    if ("nostalgia".startsWith(projectQuery)) {
+    const targetQuery = lower.slice(5);
+    if ("nostalgia".startsWith(targetQuery)) {
       return `${leadingSpace}open nostalgia`;
     }
-
-    const match = profile.projects.find((project) => project.id.toLowerCase().startsWith(projectQuery));
-    return match ? `${leadingSpace}open ${match.id}` : input;
+    return input;
   }
 
   const commandNames = Object.keys(commandRegistry);

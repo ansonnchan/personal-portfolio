@@ -40,7 +40,7 @@ export function EducationOutput() {
               <h4 className="font-sans text-xs font-semibold uppercase tracking-[0.16em] text-[var(--text-muted)]">
                 Achievements
               </h4>
-              <p className="mt-2 text-sm leading-6 text-[var(--accent-green)]">{item.notes}</p>
+              <p className="mt-2 text-sm leading-6 text-[var(--text-secondary)]">{item.notes}</p>
             </section>
           </div>
         </article>

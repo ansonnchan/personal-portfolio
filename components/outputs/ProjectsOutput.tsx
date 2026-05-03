@@ -38,7 +38,15 @@ function ProjectLinks({ project }: { project: ProjectItem }) {
 }
 
 export function ProjectsOutput() {
-  const [previewProjectId, setPreviewProjectId] = useState<string | null>(null);
+  const [previewProjectIds, setPreviewProjectIds] = useState<string[]>([]);
+
+  function toggleProjectPreview(projectId: string) {
+    setPreviewProjectIds((current) =>
+      current.includes(projectId)
+        ? current.filter((id) => id !== projectId)
+        : [...current, projectId]
+    );
+  }
 
   return (
     <div className="space-y-6">
@@ -61,13 +69,13 @@ export function ProjectsOutput() {
 
           <button
             type="button"
-            onClick={() => setPreviewProjectId((current) => (current === project.id ? null : project.id))}
+            onClick={() => toggleProjectPreview(project.id)}
             className="mt-4 rounded-full border border-[var(--border)] px-3 py-1.5 font-mono text-xs text-[var(--bright-orange)] transition hover:border-[var(--bright-orange)] hover:bg-[var(--orange-soft)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
           >
-            {previewProjectId === project.id ? "hide screenshots" : "view screenshots"}
+            {previewProjectIds.includes(project.id) ? "hide screenshots" : "view screenshots"}
           </button>
 
-          {previewProjectId === project.id ? (
+          {previewProjectIds.includes(project.id) ? (
             <div className="mt-3 grid gap-3 sm:grid-cols-2">
               {projectShots.map((shot, index) => (
                 <figure key={shot} className="rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-3">

@@ -25,6 +25,17 @@ const welcomeLines = [
 ];
 
 const readyLine = `${profile.name}'s terminal ready.`;
+function shouldScrollCommandToStart(command: string) {
+  const normalized = command.toLowerCase();
+
+  return (
+    normalized === "cat about.txt" ||
+    normalized.startsWith("cat experience.txt") ||
+    normalized === "cat archives/old_experience.txt" ||
+    normalized === "cd projects" ||
+    normalized === "open nostalgia"
+  );
+}
 
 function playDisabledClick() {
   const AudioContextClass =
@@ -107,7 +118,7 @@ function CommandBlockView({ block }: { block: CommandBlock }) {
   const blockRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    if (block.command === "cd projects" || block.command === "open nostalgia") {
+    if (shouldScrollCommandToStart(block.command)) {
       blockRef.current?.scrollIntoView({ block: "start" });
     }
   }, [block.command]);
@@ -135,7 +146,7 @@ export function OutputWindow({
   const lastCommand = history[history.length - 1]?.command;
 
   useEffect(() => {
-    if (lastCommand === "cd projects" || lastCommand === "open nostalgia") {
+    if (lastCommand && shouldScrollCommandToStart(lastCommand)) {
       return;
     }
 

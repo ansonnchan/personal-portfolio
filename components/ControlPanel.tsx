@@ -101,18 +101,18 @@ export function ControlPanel({ activeModule, onCommand, children }: ControlPanel
       </div>
 
       <nav
-        className="flex min-h-0 flex-1 gap-4 overflow-auto p-3 lg:block lg:space-y-6 lg:p-4"
+        className="flex min-h-0 flex-1 gap-4 overflow-auto p-3 lg:block lg:space-y-4 lg:p-4"
         aria-label="Portfolio command modules"
       >
-        <h2 className="mb-4 min-w-[14rem] shrink-0 text-center font-sans text-sm font-semibold text-[var(--bright-orange)] lg:min-w-0">
+        <h2 className="mb-3 min-w-[14rem] shrink-0 text-center font-sans text-sm font-medium text-[var(--bright-orange)] lg:min-w-0">
           Try These Commands
         </h2>
         {moduleSections.map((section) => (
           <section key={section.title} className="min-w-[14rem] shrink-0 lg:min-w-0">
-            <h2 className="mb-2 border-b border-[var(--border)] pb-2 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--text-muted)]">
+            <h2 className="mb-1.5 border-b border-[var(--border)] pb-1.5 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--text-muted)]">
               {section.title}
             </h2>
-            <div className="space-y-1">
+            <div className="space-y-0.5">
               {section.items.map((item) => {
                 const isActive = activeModule === moduleKey(item.command);
 
@@ -122,7 +122,7 @@ export function ControlPanel({ activeModule, onCommand, children }: ControlPanel
                     type="button"
                     onClick={() => onCommand(item.command)}
                     className={[
-                      "group relative w-full rounded-md border-l-2 px-3 py-2.5 text-left transition",
+                      "group relative w-full rounded-md border-l-2 px-3 py-1.5 text-left transition",
                       "hover:border-[var(--bright-orange)] hover:bg-[var(--orange-soft)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]",
                       isActive
                         ? "border-[var(--bright-orange)] bg-[var(--orange-soft)]"

@@ -61,8 +61,8 @@ I care about crisp interfaces, resilient services, and tools that give people mo
       techStack: ["TypeScript", "React", "Node.js", "CI/CD", "Automated testing"],
       metrics: ["30% faster releases", "consumer lending", "ops tooling"],
       highlights: [
-       "Delivered new features and performance improvements for a consumer lending platform, enhancing internal tooling for operations teams and resolving user-facing issues for end users",
-       "Streamlined the CI/CD pipeline by integrating automated testing and deployment workflows, reducing release times by 30%.",
+       "Delivered new features and performance improvements for a consumer lending platform, enhancing internal tooling for operations teams and resolving user-facing issues for end users.",
+       "Streamlined the CI/CD pipeline by integrating automated testing and deployment workflows.",
        "Collaborated with product and operations stakeholders to debug real user workflows and ship practical fixes.",
       ]
     },
@@ -76,7 +76,7 @@ I care about crisp interfaces, resilient services, and tools that give people mo
       metrics: ["large-scale analysis", "emergent behavior", "research tooling"],
       highlights: [
         "Computational modeling research under Dr. Terence Chan",
-        "Developed a deterministic Conway's Game of Life engine for large-scale analysis of emergent behaviors in cellular automata.",
+        "Developed a Conway's Game of Life engine for large-scale analysis of emergent behavior in cellular automata.",
         "Built reproducible MATLAB workflows for experimenting with state transitions and visualizing model behavior."
       ]
     }

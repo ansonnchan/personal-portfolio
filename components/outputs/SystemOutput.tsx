@@ -35,9 +35,7 @@ export function SystemOutput({ modules }: { modules: string[] }) {
     ["Operator", profile.name],
     ["Uptime", uptime],
     ["Build", profile.system.build],
-    ["Status", "All systems nominal"],
-    ["Modules loaded", modules.join(", ")],
-    ["Last updated", profile.system.lastUpdated]
+    ["Status", "All systems nominal"]
   ];
 
   return (
@@ -53,6 +51,23 @@ export function SystemOutput({ modules }: { modules: string[] }) {
             <dd className="min-w-0 text-[var(--text-primary)]">{value}</dd>
           </div>
         ))}
+        <div className="contents">
+          <dt className="font-sans text-xs uppercase tracking-[0.16em] text-[var(--text-muted)]">Modules loaded</dt>
+          <dd className="flex min-w-0 flex-wrap gap-2">
+            {modules.map((module) => (
+              <code
+                key={module}
+                className="rounded border border-[var(--border)] bg-[var(--bg-elevated)] px-1.5 py-0.5 text-[var(--accent-green)]"
+              >
+                {module}
+              </code>
+            ))}
+          </dd>
+        </div>
+        <div className="contents">
+          <dt className="font-sans text-xs uppercase tracking-[0.16em] text-[var(--text-muted)]">Last updated</dt>
+          <dd className="min-w-0 text-[var(--text-primary)]">{profile.system.lastUpdated}</dd>
+        </div>
       </dl>
     </div>
   );
