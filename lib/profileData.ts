@@ -75,7 +75,7 @@ I care about crisp interfaces, resilient services, and tools that give people mo
       techStack: ["MATLAB", "Simulation", "Cellular automata", "Deterministic modeling"],
       metrics: ["large-scale analysis", "emergent behavior", "research tooling"],
       highlights: [
-        "Computational modeling research under Dr. Terence Chan",
+        "Computational modeling research under Dr. Terence Chan.",
         "Developed a Conway's Game of Life engine for large-scale analysis of emergent behavior in cellular automata.",
         "Built reproducible MATLAB workflows for experimenting with state transitions and visualizing model behavior."
       ]

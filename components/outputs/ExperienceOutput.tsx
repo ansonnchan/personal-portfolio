@@ -25,7 +25,7 @@ const archivedExperiences: ArchivedExperienceItem[] = [
     company: "Gap",
     location: "Richmond, BC",
     period: "June 2022 - April 2025",
-    highlights: ["just smile and wave boys", "would you like a bag for 25¢?"]
+    highlights: ["Just smile and wave boys.", "Would you like a bag for 25¢?"]
   },
   {
     id: "kumon",
@@ -33,7 +33,7 @@ const archivedExperiences: ArchivedExperienceItem[] = [
     company: "Kumon",
     location: "Richmond, BC",
     period: "May 2022 - August 2024",
-    highlights: ["teaching math, reading, and life lessons.", "also passing down intergenerational trauma"]
+    highlights: ["Taught math, reading, and valuable life lessons.", "Carried on intergenerational trauma."]
   },
   {
     id: "mcdonalds",
@@ -41,21 +41,25 @@ const archivedExperiences: ArchivedExperienceItem[] = [
     company: "McDonald's",
     location: "Vancouver, BC",
     period: "January 2022 - April 2022",
-    highlights: ["Y'all, I really didn't last long here but I put the fries in the bag"]
+    highlights: ["Y'all, I really didn't last long here but I was putting the fries in the bag."]
   }
-];
-
-const archivedHighlightPhrases = [
-  "just smile and wave",
-  "boys",
-  "life lessons",
-  "intergenerational trauma",
-  "put the fries in the bag"
 ];
 
 function organizationIcon(company: string) {
   if (company === "Borrow'd") {
     return "/assets/borrowd_org_logo.jpeg";
+  }
+
+  if (company === "Gap") {
+    return "/assets/gap.png";
+  }
+
+  if (company === "Kumon") {
+    return "/assets/kumon.png";
+  }
+
+  if (company === "McDonald's") {
+    return "/assets/mcdonalds.png";
   }
 
   return "/assets/unisa-logo.svg";
@@ -221,7 +225,7 @@ export function ArchivedExperienceOutput() {
             {job.highlights.map((highlight) => (
               <li key={highlight} className="flex gap-2">
                 <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--bright-orange)]" />
-                <span><HighlightText text={highlight} phrases={archivedHighlightPhrases} /></span>
+                <span>{highlight}</span>
               </li>
             ))}
           </ul>

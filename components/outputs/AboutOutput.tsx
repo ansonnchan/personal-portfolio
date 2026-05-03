@@ -15,10 +15,10 @@ function initials(name: string) {
 
 const aboutBullets = [
   "Born in Hong Kong, but lived in Australia for 15 years before moving to Canada back in late 2021.",
-  "Into machine learning and NLP, and also creating stupid Naruto OpenCV filters for fun.",
+  "Into machine learning, NLP, and also creating stupid Naruto OpenCV filters for fun.",
   "I love to play every racket sport (tennis, badminton, table tennis) but I have a soft spot for tennis since I played competitively for many years.",
-  "I have also played the trumpet and the violin, and was part of my school orchestra",
-  "I'm currently learning Chinese, around HSK 3 level.",
+  "I play the trumpet and the violin, and was part of my school orchestra.",
+  "I'm currently learning Chinese, though I'm still not very good at it (around HSK 3 level).",
   "Always down to connect and chat about anything, so feel free to reach out through email or socials!"
 ];
 

@@ -8,7 +8,8 @@ const photos = [
   "/assets/IMG_0734.JPG",
   "/assets/IMG_0916.JPG",
   "/assets/IMG_1953.JPG",
-  "/assets/IMG_2256.JPG"
+  "/assets/IMG_2256.JPG",
+  "/assets/swollen.JPG",
 ];
 
 const captions = [
@@ -17,7 +18,9 @@ const captions = [
   "Placeholder caption 03",
   "Placeholder caption 04",
   "Placeholder caption 05",
-  "Placeholder caption 06"
+  "Placeholder caption 06",
+  "Placeholder caption 07"
+
 ];
 
 export function NostalgiaOutput() {
