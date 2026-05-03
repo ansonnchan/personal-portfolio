@@ -25,7 +25,7 @@ export function ChibiFunFacts() {
           <span className="absolute bottom-0 h-4 w-full bg-[var(--bg-panel)]/90" aria-hidden="true" />
         </span>
         <span className="font-mono text-xs leading-5 text-[var(--text-secondary)]">
-          ohoho... are you sure you <span className="text-[var(--bright-orange)]">don't</span> want to know more about me?
+          ohoho... are you sure you <span className="text-[var(--bright-orange)]">don&apos;t</span> want to know more about me?
         </span>
       </button>
     );

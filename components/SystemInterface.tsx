@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { BirthdayCountdown } from "@/components/BirthdayCountdown";
 import { ChibiFunFacts } from "@/components/ChibiFunFacts";
 import { ControlPanel } from "@/components/ControlPanel";
+import { MusicPlayer } from "@/components/MusicPlayer";
 import { OutputWindow } from "@/components/OutputWindow";
 import { profile } from "@/lib/profileData";
 import { useTerminal } from "@/lib/useTerminal";
@@ -87,7 +88,10 @@ export function SystemInterface() {
       <div className="flex h-full w-full flex-col gap-4 px-4 py-4 sm:px-6 lg:px-8">
         <header className="terminal-scan flex-none rounded-lg border border-[var(--border)] bg-[var(--bg-panel)] px-4 py-3 shadow-panel">
           <div className="grid gap-3 lg:grid-cols-[12rem_1fr_12rem] lg:items-start">
-            <div className="hidden lg:block" />
+            <div className="space-y-3">
+              <MusicPlayer />
+              <BirthdayCountdown />
+            </div>
             <div className="min-w-0 text-center">
               <p className="font-mono text-sm text-[var(--text-secondary)]">
                 <span className="text-[var(--accent-green)]">visitor@{profile.handle}</span> ~ % welcome friend
@@ -119,7 +123,7 @@ export function SystemInterface() {
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={theme === "dark" ? "/assets/light_mode_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" : "/assets/dark_mode_24dp_1F1F1F_FILL1_wght400_GRAD0_opsz24.svg"}
+                  src={theme === "dark" ? "/assets/light_mode_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" : "/assets/dark_mode_24dp_1F1F1F_FILL1_wght400_GRAD0_opsz24.svg"}
                   alt=""
                   className="h-5 w-5"
                 />
@@ -135,9 +139,6 @@ export function SystemInterface() {
               onCommand={terminal.runCommand}
             >
               <ChibiFunFacts />
-              <div className="mt-3">
-                <BirthdayCountdown />
-              </div>
             </ControlPanel>
           </div>
           <OutputWindow

@@ -102,28 +102,18 @@ export function NostalgiaOutput() {
           aria-modal="true"
           onClick={() => setSelectedIndex(null)}
         >
-          <button
-            type="button"
-            onClick={(event) => {
-              event.stopPropagation();
-              showPrevious();
-            }}
-            className="absolute left-4 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--bg-panel)]/90 font-mono text-xl text-[var(--bright-orange)] transition hover:bg-[var(--orange-soft)]"
-            aria-label="Previous photo"
-          >
-            ‹
-          </button>
-          <button
-            type="button"
-            onClick={(event) => {
-              event.stopPropagation();
-              showNext();
-            }}
-            className="absolute right-4 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--bg-panel)]/90 font-mono text-xl text-[var(--bright-orange)] transition hover:bg-[var(--orange-soft)]"
-            aria-label="Next photo"
-          >
-            ›
-          </button>
+          <div className="flex w-full max-w-6xl items-center justify-center gap-3 sm:gap-5">
+            <button
+              type="button"
+              onClick={(event) => {
+                event.stopPropagation();
+                showPrevious();
+              }}
+              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-[var(--bright-orange)] bg-[var(--bg-panel)]/95 font-mono text-4xl leading-none text-[var(--bright-orange)] shadow-lift transition hover:bg-[var(--orange-soft)]"
+              aria-label="Previous photo"
+            >
+              ‹
+            </button>
           <figure
             className="relative max-h-[90vh] max-w-4xl overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--bg-panel)] shadow-lift"
             onClick={(event) => event.stopPropagation()}
@@ -141,6 +131,18 @@ export function NostalgiaOutput() {
               </button>
             </figcaption>
           </figure>
+            <button
+              type="button"
+              onClick={(event) => {
+                event.stopPropagation();
+                showNext();
+              }}
+              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-[var(--bright-orange)] bg-[var(--bg-panel)]/95 font-mono text-4xl leading-none text-[var(--bright-orange)] shadow-lift transition hover:bg-[var(--orange-soft)]"
+              aria-label="Next photo"
+            >
+              ›
+            </button>
+          </div>
         </div>
       ) : null}
     </div>

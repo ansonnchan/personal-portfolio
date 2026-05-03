@@ -25,25 +25,25 @@ export function BirthdayCountdown() {
   }, []);
 
   return (
-    <section className="rounded-lg border border-[var(--border)] bg-[var(--bg-panel)] p-3 shadow-panel">
-      <div className="flex items-center gap-3">
+    <section className="rounded-lg border border-[var(--border)] bg-[var(--bg-panel)] p-2.5 shadow-panel">
+      <div className="flex items-center gap-2">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/assets/birthday.png"
           alt=""
-          className="h-14 w-14 shrink-0 rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] object-cover"
+          className="h-12 w-12 shrink-0 rounded-lg border border-transparent bg-transparent object-contain"
         />
         <div className="min-w-0">
           <p className="font-mono text-xs font-semibold text-[var(--bright-orange)]">till my birthday</p>
-          <div className="mt-1 grid grid-cols-4 gap-1 font-mono text-[10px] text-[var(--text-secondary)]">
+          <div className="mt-1 grid grid-cols-4 gap-1 font-mono text-[9px] text-[var(--text-secondary)]">
             {[
               ["d", remaining.days],
               ["h", remaining.hours],
               ["m", remaining.minutes],
               ["s", remaining.seconds]
             ].map(([label, value]) => (
-              <span key={label} className="rounded border border-[var(--border)] bg-[var(--bg-elevated)] px-1.5 py-1 text-center">
-                <strong className="block text-sm text-[var(--text-primary)]">{String(value).padStart(2, "0")}</strong>
+              <span key={label} className="rounded border border-[var(--border)] bg-[var(--bg-elevated)] px-1 py-0.5 text-center">
+                <strong className="block text-xs text-[var(--text-primary)]">{String(value).padStart(2, "0")}</strong>
                 {label}
               </span>
             ))}
