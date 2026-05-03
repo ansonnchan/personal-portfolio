@@ -16,7 +16,7 @@ I care about crisp interfaces, resilient services, and tools that give people mo
     email: "ananryry180@gmail.com"
   },
   resume: "/resume.pdf",
-  resumeFileName: "anson_chan_resume.pdf",
+  resumeFileName: "Anson_Chan_Resume.pdf",
   assets: {
     favicon: "/assets/favicon.png",
     profileCurrent: "/assets/adult_pfp-modified.png",
