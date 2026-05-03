@@ -87,7 +87,7 @@ export function MusicPlayer() {
 
       {isCollapsed ? (
         <div className="font-mono text-[10px] text-[var(--text-muted)]">
-          lofi desk
+          lofi.exe
         </div>
       ) : (
         <div className="space-y-2">
@@ -97,10 +97,7 @@ export function MusicPlayer() {
               <img
                 src="/assets/midnight-wolfie.png"
                 alt=""
-                className={[
-                  "h-14 w-14 rounded-lg border border-[var(--border)] bg-transparent object-cover",
-                  isPlaying ? "music-art--playing" : "music-art--idle"
-                ].join(" ")}
+                className="music-art--playing h-14 w-14 rounded-lg border border-[var(--border)] bg-transparent object-cover"
               />
               <div className="mt-1 flex justify-center gap-1.5">
                 <button
@@ -128,7 +125,7 @@ export function MusicPlayer() {
               </div>
             </div>
             <div className="min-w-0 flex-1">
-              <p className="font-mono text-[10px] leading-4 text-[var(--text-primary)]">Fly Me to the Moon (Lofi ver.)</p>
+              <p className="max-w-[7rem] font-mono text-[9px] leading-4 text-[var(--text-primary)]">Fly Me to the Moon (Lofi ver.)</p>
               <p className="font-mono text-[9px] leading-4 text-[var(--text-muted)]">MidnightWolfie</p>
               <p className="font-mono text-[9px] leading-4 text-[var(--bright-orange)]">Copyright Free</p>
               <div className="mt-2 flex items-center gap-1.5">
@@ -158,10 +155,6 @@ export function MusicPlayer() {
               <p className="font-mono text-[10px] font-semibold text-[var(--bright-orange)]">birthday.exe</p>
               <p className="mt-1 font-mono text-sm font-semibold text-[var(--text-primary)]">{compactBirthday(remaining)}</p>
             </div>
-          </div>
-
-          <div className="rounded border border-[var(--border)] bg-[var(--bg-elevated)] px-2 py-1">
-            <p className="font-mono text-[9px] text-[var(--text-muted)]">Original ver. by Frank Sinatra</p>
           </div>
         </div>
       )}

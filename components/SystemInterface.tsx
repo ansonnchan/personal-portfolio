@@ -104,7 +104,6 @@ export function SystemInterface() {
               <div className="rounded-md border border-[var(--border)] bg-[var(--bg-elevated)] px-3 py-2 text-right">
                 <time className="block text-[var(--text-primary)]">{clock}</time>
                 <span className="mt-1 block text-[var(--text-secondary)]">{dateLabel}</span>
-                <span className="mt-1 block text-[var(--text-secondary)]">Vancouver, BC</span>
               </div>
               <a
                 href={profile.resume}

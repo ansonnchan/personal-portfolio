@@ -98,21 +98,6 @@ function WelcomeState() {
           {line || "\u00a0"}
         </p>
       ))}
-      <div className="mt-5 rounded-lg border border-dashed border-[var(--border)] bg-[var(--bg-elevated)] p-3 text-xs leading-5">
-        <span className="text-[var(--accent-green)]">Pro tip:</span> try{" "}
-        <button type="button" className="text-[var(--link)] underline-offset-4 hover:underline" onClick={() => window.dispatchEvent(new CustomEvent("terminal:command", { detail: "cd projects" }))}>
-          cd projects
-        </button>
-        ,{" "}
-        <button type="button" className="text-[var(--link)] underline-offset-4 hover:underline" onClick={() => window.dispatchEvent(new CustomEvent("terminal:command", { detail: "ls ./skills/" }))}>
-          ls ./skills/
-        </button>
-        ,{" "}
-        <button type="button" className="text-[var(--link)] underline-offset-4 hover:underline" onClick={() => window.dispatchEvent(new CustomEvent("terminal:command", { detail: "wget resume.pdf" }))}>
-          wget resume.pdf
-        </button>
-        .
-      </div>
     </div>
   );
 }
@@ -234,6 +219,9 @@ export function OutputWindow({
           />
           <span className="font-mono text-xs font-semibold text-[var(--text-muted)]">
             visitor@{profile.handle} ~ %
+          </span>
+          <span className="ml-auto font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[var(--text-muted)]">
+            TERMINAL
           </span>
         </div>
 
