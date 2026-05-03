@@ -15,7 +15,11 @@ type ArchivedExperienceItem = {
 const experienceHighlightPhrases = [
   "streamlined the CI/CD pipeline",
   "computational modeling research",
-  "emergent behavior in cellular automata"
+  "emergent behavior in cellular automata",
+  "LLM systems research",
+  "Dr. Terence Chan",
+  "DAG-based pipelines",
+  "RAG chunking"
 ];
 
 const archivedExperiences: ArchivedExperienceItem[] = [

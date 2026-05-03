@@ -1,15 +1,15 @@
 const skillGroups = [
   {
     title: "Languages",
-    skills: ["TypeScript", "JavaScript", "Python", "Java", "C", "C++", "SQL", "HTML5/CSS3"]
+    skills: ["TypeScript", "JavaScript", "Python", "Java", "C++", "SQL", "HTML/CSS"]
   },
   {
-    title: "Frontend",
-    skills: ["React", "Next.js", "Tailwind CSS"]
+    title: "Frontend & Libraries",
+    skills: ["React", "Next.js", "Tailwind CSS", "three.js", "Angular", "Vue.js"]
   },
   {
-    title: "Backend & APIs",
-    skills: ["Node.js", "Flask", "Django", "Spring Boot", "REST APIs", "JWT"]
+    title: "Backend & Frameworks",
+    skills: ["Node.js", "Django", "Spring Boot", "FastAPI", "GraphQL"]
   },
   {
     title: "Cloud & DevOps",
@@ -17,11 +17,11 @@ const skillGroups = [
   },
   {
     title: "Databases",
-    skills: ["PostgreSQL", "MySQL", "Redis", "MongoDB"]
+    skills: ["PostgreSQL", "Redis"]
   },
   {
-    title: "AI/ML & Tools",
-    skills: ["LangGraph", "LangChain", "LLaMA", "Groq", "PyTorch", "TensorFlow", "OpenCV", "Keras", "Hugging Face"]
+    title: "AI & ML",
+    skills: ["LangGraph", "LangChain", "PyTorch", "TensorFlow", "OpenCV"]
   }
 ];
 

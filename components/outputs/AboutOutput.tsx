@@ -64,7 +64,7 @@ export function AboutOutput() {
         </ul>
       </section>
 
-      <p className="text-xl text-[var(--accent-green)]">$</p>
+{/*      <p className="text-xl text-[var(--accent-green)]">$</p>*/}
     </div>
   );
 }

@@ -90,7 +90,6 @@ export const moduleSections = [
     title: "WORK",
     items: [
       { command: "cat experience.txt", description: "Work history" },
-      { command: "cat archives/experience.txt", description: "Archived roles" },
       { command: "cat education.txt", description: "Academic background" }
     ]
   },
@@ -160,8 +159,10 @@ function PortfolioTreeOutput() {
           "│   └── vent.ai",
           "├── skills/",
           "│   ├── ai_ml",
+          "│   ├── backend",
           "│   ├── cloud_devops",
-          "│   ├── frameworks",
+          "│   ├── databases",
+          "│   ├── frontend",
           "│   └── languages",
           "└── socials/"
         ].join("\n")

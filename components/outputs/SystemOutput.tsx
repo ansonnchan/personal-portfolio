@@ -35,7 +35,7 @@ export function SystemOutput({ modules }: { modules: string[] }) {
     ["Operator", profile.name],
     ["Uptime", uptime],
     ["Build", profile.system.build],
-    ["Status", "All systems nominal"]
+    ["Status", "All systems normal"]
   ];
 
   return (
