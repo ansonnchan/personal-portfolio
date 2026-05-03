@@ -9,17 +9,17 @@ const photos = [
   "/assets/IMG_0916.JPG",
   "/assets/IMG_1953.JPG",
   "/assets/IMG_2256.JPG",
-  "/assets/swollen.JPG",
+  "/assets/swollen.JPG"
 ];
 
 const captions = [
-  "Placeholder caption 01",
-  "Placeholder caption 02",
-  "Placeholder caption 03",
-  "Placeholder caption 04",
-  "Placeholder caption 05",
-  "Placeholder caption 06",
-  "Placeholder caption 07"
+  "I really wore alphabet pajamas. Adelaide, Australia 2013",
+  "I was really using lines on my violin LOL. Adelaide, Australia 2013",
+  "I promise I don't hold chopsticks like that anymore. Sydney, Australia 2013",
+  "Superman + apple juice + pachinko. Fukuoka, Japan 2011",
+  "Universal Studios. I wish I was a wizard. Orlando, Florida 2016",
+  "Book series was 'Unfortunate Series of Events'. Adelaide, Australia",
+  "Why was my left ear hella swollen in this photo?? Adelaide, Australia 2012"
 
 ];
 
