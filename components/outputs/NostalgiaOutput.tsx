@@ -18,7 +18,7 @@ const captions = [
   "I promise I don't hold chopsticks like that anymore. Sydney, Australia 2013",
   "Superman + apple juice + pachinko. Fukuoka, Japan 2011",
   "Universal Studios. I wish I was a wizard. Orlando, Florida 2016",
-  "Book series was 'Unfortunate Series of Events'. Adelaide, Australia",
+  "Book series was 'Unfortunate Series of Events'. Adelaide, Australia, 2016",
   "Why was my left ear hella swollen in this photo?? Adelaide, Australia 2012"
 
 ];

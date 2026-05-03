@@ -4,10 +4,20 @@ import { useState } from "react";
 import { profile } from "@/lib/profileData";
 import type { ProjectItem } from "@/types";
 
-const projectShots = [
-  "/assets/favicon.png",
-  "/assets/resume-icon.svg"
-];
+/**
+ * Mapping project IDs to their specific image assets.
+ * Ensure the keys here match the 'id' field in your profileData.
+ */
+const PROJECT_ASSETS: Record<string, string[]> = {
+  "portfolio": [
+    "/assets/portfolio_pic1.png",
+    "/assets/portfolio_pic2.png"
+  ],
+  "vent.ai": [
+    "/assets/vent.ai_pic1.png",
+    "/assets/vent.ai_pic2.png"
+  ]
+};
 
 function ProjectLinks({ project }: { project: ProjectItem }) {
   const links = [
@@ -50,48 +60,60 @@ export function ProjectsOutput() {
 
   return (
     <div className="space-y-6">
-      {profile.projects.map((project) => (
-        <article key={project.id} className="rounded-lg border border-[var(--border)] bg-[var(--bg-panel)] p-5">
-          <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-            <h3 className="font-mono text-lg font-semibold text-[var(--text-primary)]">{project.name}</h3>
-            {project.featured ? (
-              <span className="font-mono text-xs uppercase tracking-[0.16em] text-[var(--accent)]">featured</span>
-            ) : null}
-          </div>
+      {profile.projects.map((project) => {
+        // Dynamically fetch shots for the specific project
+        const currentShots = PROJECT_ASSETS[project.id.toLowerCase()] || [];
 
-          <p className="mt-2 text-sm leading-6 text-[var(--text-secondary)]">{project.summary}</p>
-          <p className="mt-3 font-mono text-sm text-[var(--accent-green)]">{project.techStack.join(" / ")}</p>
-          <ul className="mt-4 space-y-1 text-sm leading-6 text-[var(--text-secondary)]">
-            <li>- {project.technicalSummary}</li>
-            <li>- {project.problem}</li>
-            <li>- Add a project achievement here.</li>
-          </ul>
-
-          <button
-            type="button"
-            onClick={() => toggleProjectPreview(project.id)}
-            className="mt-4 rounded-full border border-[var(--border)] px-3 py-1.5 font-mono text-xs text-[var(--bright-orange)] transition hover:border-[var(--bright-orange)] hover:bg-[var(--orange-soft)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
-          >
-            {previewProjectIds.includes(project.id) ? "hide screenshots" : "view screenshots"}
-          </button>
-
-          {previewProjectIds.includes(project.id) ? (
-            <div className="mt-3 grid gap-3 sm:grid-cols-2">
-              {projectShots.map((shot, index) => (
-                <figure key={shot} className="rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-3">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={shot} alt="" className="aspect-video w-full rounded border border-[var(--border)] bg-white object-contain p-4" />
-                  <figcaption className="mt-2 font-mono text-xs text-[var(--text-muted)]">
-                    Screenshot placeholder {index + 1}
-                  </figcaption>
-                </figure>
-              ))}
+        return (
+          <article key={project.id} className="rounded-lg border border-[var(--border)] bg-[var(--bg-panel)] p-5">
+            <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+              <h3 className="font-mono text-lg font-semibold text-[var(--text-primary)]">{project.name}</h3>
+              {project.featured ? (
+                <span className="font-mono text-xs uppercase tracking-[0.16em] text-[var(--accent)]">featured</span>
+              ) : null}
             </div>
-          ) : null}
 
-          <ProjectLinks project={project} />
-        </article>
-      ))}
+            <p className="mt-2 text-sm leading-6 text-[var(--text-secondary)]">{project.summary}</p>
+            <p className="mt-3 font-mono text-sm text-[var(--accent-green)]">{project.techStack.join(" / ")}</p>
+            <ul className="mt-4 space-y-1 text-sm leading-6 text-[var(--text-secondary)]">
+              <li>- {project.technicalSummary}</li>
+              <li>- {project.problem}</li>
+              <li>- Add a project achievement here.</li>
+            </ul>
+
+            {/* Only render button if images exist for this project */}
+            {currentShots.length > 0 && (
+              <button
+                type="button"
+                onClick={() => toggleProjectPreview(project.id)}
+                className="mt-4 rounded-full border border-[var(--border)] px-3 py-1.5 font-mono text-xs text-[var(--bright-orange)] transition hover:border-[var(--bright-orange)] hover:bg-[var(--orange-soft)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+              >
+                {previewProjectIds.includes(project.id) ? "hide screenshots" : "view screenshots"}
+              </button>
+            )}
+
+            {previewProjectIds.includes(project.id) && currentShots.length > 0 ? (
+              <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                {currentShots.map((shot, index) => (
+                  <figure key={shot} className="rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-3">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img 
+                      src={shot} 
+                      alt={`${project.name} screenshot ${index + 1}`} 
+                      className="aspect-video w-full rounded border border-[var(--border)] bg-white object-contain p-4" 
+                    />
+                    <figcaption className="mt-2 font-mono text-xs text-[var(--text-muted)]">
+                      {project.name} preview {index + 1}
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            ) : null}
+
+            <ProjectLinks project={project} />
+          </article>
+        );
+      })}
     </div>
   );
 }

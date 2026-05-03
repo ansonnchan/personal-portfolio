@@ -25,14 +25,13 @@ I care about crisp interfaces, resilient services, and tools that give people mo
     resumeIcon: "/assets/resume-icon.svg"
   },
   funFacts: [
-    "I lived in Australia for 15 years.",
-    "I played competitive tennis.",
-    "I made Tennis BC provincials.",
-    "I played trumpet.",
-    "I was in school orchestra and jazz band.",
+    "I have lived in Australia for 15 years.",
+    "I made provincinals in tennis (but we got clapped there).",
+    "I have played trumpet and violin for 10+ years.",
+    "I was in the school orchestra and jazz band.",
     "I am learning Chinese, around HSK 3 level.",
-    "My League of Legends mains are Ahri and Shen.",
-    "I peaked Platinum in League of Legends."
+    "I main Ahri and Shen in LoL.",
+    "I peaked Platinum in League of Legends. Only been downhill since then."
   ],
   system: {
     uptime: "15 days, 4 hours, 12 minutes", // This will be dynamically calculated in the SystemOutput component

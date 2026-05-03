@@ -41,7 +41,7 @@ export function ContactOutput() {
               {labels[key]}
             </span>
             <span className="min-w-0 truncate text-right text-[var(--link)]">
-              {displayValue(key, value)} <span aria-hidden="true">-&gt;</span>
+              {displayValue(key, value)}
             </span>
           </a>
         );

@@ -63,7 +63,10 @@ const commandSpecs = [
     activeModule: "system" },
   { name: "clear", 
     description: "Clear the output log", 
-    activeModule: null }
+    activeModule: null },
+  { name: "pwd",
+    description: "Print current portfolio path",
+    activeModule: "pwd" }
 ] satisfies CommandSpec[];
 
 const helpCommands = commandSpecs.map((command) => ({
@@ -77,6 +80,8 @@ export const moduleSections = [
   {
     title: "SYSTEM",
     items: [
+      { command: "pwd", description: "Current path" },
+      { command: "ls", description: "List portfolio files" },
       { command: "cat about.txt", description: "About Me" },
       { command: "system", description: "Runtime diagnostics" }
     ]
@@ -126,38 +131,52 @@ function defineCommand(spec: CommandSpec, handler: CommandDefinition["handler"])
 }
 
 function PortfolioTreeOutput() {
-  const tree = [
-    { path: "app/", note: "routes, layout, globals" },
-    { path: "components/", note: "terminal windows + output views" },
-    { path: "lib/", note: "profile data + commands" },
-    { path: "projects/", note: "> portfolio, vent.ai, borrow'd, contact card" },
-    { path: "skills/", note: "languages, frameworks, cloud_devops, ai_ml" },
-    { path: "public/assets/", note: "icons, photos, resume, audio" }
-  ];
-
   return React.createElement(
     "div",
-    { className: "space-y-2 font-mono text-sm leading-6" },
+    { className: "space-y-3 font-mono text-sm leading-6" },
     React.createElement(
-      "p",
-      { className: "text-[var(--text-secondary)]" },
-      React.createElement("span", { className: "text-[var(--accent-green)]" }, "personal-portfolio/"),
-      " architecture"
+      "div",
+      null,
+      React.createElement("p", { className: "text-[var(--command)]" }, "pwd"),
+      React.createElement("p", { className: "text-[var(--accent-green)]" }, "~/anson/portfolio")
     ),
     React.createElement(
       "div",
-      { className: "rounded-md border border-[var(--border)] bg-[var(--bg-elevated)] p-3" },
-      tree.map((item, index) =>
-        React.createElement(
-          "p",
-          { key: item.path, className: "flex flex-wrap gap-x-2" },
-          React.createElement("span", { className: "text-[var(--text-muted)]" }, index === tree.length - 1 ? "`--" : "|--"),
-          React.createElement("span", { className: "text-[var(--accent-green)]" }, item.path),
-          React.createElement("span", { className: "text-[var(--text-secondary)]" }, item.note)
-        )
+      { className: "overflow-x-auto rounded-md border border-[var(--border)] bg-[var(--bg-elevated)] p-3 text-[var(--text-secondary)]" },
+      React.createElement(
+        "pre",
+        { className: "min-w-max whitespace-pre font-mono" },
+        [
+          ".",
+          "├── about.txt",
+          "├── archives/",
+          "│   └── old_experience.txt",
+          "├── education.txt",
+          "├── experience.txt",
+          "├── projects/",
+          "│   ├── portfolio",
+          "│   └── vent.ai",
+          "├── skills/",
+          "│   ├── ai_ml",
+          "│   ├── cloud_devops",
+          "│   ├── frameworks",
+          "│   └── languages",
+          "└── socials/"
+        ].join("\n")
       )
+    ),
+    React.createElement(
+      "p",
+      { className: "text-[var(--text-muted)]" },
+      "Tip: Use ",
+      React.createElement("code", { className: "text-[var(--command)]" }, "cat archives/old_experience.txt"),
+      " to view archived experiences."
     )
   );
+}
+
+function PwdOutput() {
+  return React.createElement("p", { className: "font-mono text-sm text-[var(--accent-green)]" }, "~/anson/portfolio");
 }
 
 export const commandRegistry: Record<string, CommandDefinition> = {
@@ -215,7 +234,8 @@ export const commandRegistry: Record<string, CommandDefinition> = {
   ),
   resume: defineCommand(commandSpecs[10], () => React.createElement(ResumeOutput)),
   system: defineCommand(commandSpecs[11], () => React.createElement(SystemOutput, { modules: loadedModules })),
-  clear: defineCommand(commandSpecs[12], () => null)
+  clear: defineCommand(commandSpecs[12], () => null),
+  pwd: defineCommand(commandSpecs[13], () => React.createElement(PwdOutput))
 };
 
 export function splitCommand(input: string) {
