@@ -18,7 +18,7 @@ type CommandSpec = {
   activeModule?: string | null;
 };
 
-const portfolioFiles = ["about.txt", "education.txt", "experience.txt", "archives/old_experience.txt", "projects/", "skills/", "resume.pdf"];
+const portfolioFiles = ["about.txt", "education.txt", "experience.txt", "archives/experience.txt", "projects/", "skills/", "resume.pdf"];
 
 const commandSpecs = [
   { name: "help", 
@@ -49,8 +49,8 @@ const commandSpecs = [
   { name: "open nostalgia", 
     description: "Open old-photo gallery", 
     activeModule: "nostalgia" },
-  { name: "cat experience.txt [id]", 
-    description: "Print detailed CLI output for an experience", 
+  { name: "cat archives/experience.txt", 
+    description: "Show archived non-internship experience", 
     activeModule: "experience" },
   { name: "whereis socials", 
     description: "Show links and email", 
@@ -90,6 +90,7 @@ export const moduleSections = [
     title: "WORK",
     items: [
       { command: "cat experience.txt", description: "Work history" },
+      { command: "cat archives/experience.txt", description: "Archived roles" },
       { command: "cat education.txt", description: "Academic background" }
     ]
   },
@@ -116,6 +117,7 @@ const activeModuleByCatFile: Record<string, string> = {
   "about.txt": "about",
   "education.txt": "education",
   "experience.txt": "experience",
+  "archives/experience.txt": "experience",
   "archives/old_experience.txt": "experience",
   "projects.txt": "projects",
   "skills.txt": "skills"
@@ -150,7 +152,7 @@ function PortfolioTreeOutput() {
           ".",
           "├── about.txt",
           "├── archives/",
-          "│   └── old_experience.txt",
+          "│   └── experience.txt",
           "├── education.txt",
           "├── experience.txt",
           "├── projects/",
@@ -169,7 +171,7 @@ function PortfolioTreeOutput() {
       "p",
       { className: "text-[var(--text-muted)]" },
       "Tip: Use ",
-      React.createElement("code", { className: "text-[var(--command)]" }, "cat archives/old_experience.txt"),
+      React.createElement("code", { className: "text-[var(--command)]" }, "cat archives/experience.txt"),
       " to view archived experiences."
     )
   );
@@ -183,11 +185,11 @@ export const commandRegistry: Record<string, CommandDefinition> = {
   help: defineCommand(commandSpecs[0], () => React.createElement(HelpOutput, { commands: helpCommands })),
   cat: defineCommand(commandSpecs[2], (args) => {
     const file = args[0]?.toLowerCase();
-    const detailId = args[1] ?? "";
 
     if (file === "about.txt") return React.createElement(AboutOutput);
     if (file === "education.txt") return React.createElement(EducationOutput);
-    if (file === "experience.txt") return React.createElement(ExperienceOutput, { detailId });
+    if (file === "experience.txt") return React.createElement(ExperienceOutput);
+    if (file === "archives/experience.txt") return React.createElement(ArchivedExperienceOutput);
     if (file === "archives/old_experience.txt") return React.createElement(ArchivedExperienceOutput);
     if (file === "projects.txt") return React.createElement(ProjectsOutput);
     if (file === "skills.txt") return React.createElement(SkillsOutput);

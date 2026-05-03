@@ -178,7 +178,7 @@ export function ExperienceOutput({ detailId = "" }: { detailId?: string }) {
           Check out my{" "}
           <button
             type="button"
-            onClick={() => window.dispatchEvent(new CustomEvent("terminal:command", { detail: "cat archives/old_experience.txt" }))}
+            onClick={() => window.dispatchEvent(new CustomEvent("terminal:command", { detail: "cat archives/experience.txt" }))}
             className="font-mono text-[var(--link)] underline decoration-[var(--link)]/50 underline-offset-4 transition hover:text-[var(--bright-orange)] hover:decoration-[var(--bright-orange)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
           >
             archived experiences

@@ -15,7 +15,7 @@ I care about crisp interfaces, resilient services, and tools that give people mo
     linkedin: "https://linkedin.com/in/ansonnchan",
     email: "ananryry180@gmail.com"
   },
-  resume: "/anson_chan_resume.pdf",
+  resume: "/resume.pdf",
   resumeFileName: "anson_chan_resume.pdf",
   assets: {
     favicon: "/assets/favicon.png",
@@ -25,13 +25,25 @@ I care about crisp interfaces, resilient services, and tools that give people mo
     resumeIcon: "/assets/resume-icon.svg"
   },
   funFacts: [
-    "I have lived in Australia for 15 years.",
-    "I made provincinals in tennis (but we got clapped there).",
-    "I have played trumpet and violin for 10+ years.",
-    "I was in the school orchestra and jazz band.",
-    "I am learning Chinese, around HSK 3 level.",
-    "I main Ahri and Shen in LoL.",
-    "I peaked Platinum in League of Legends. Only been downhill since then."
+  "I lived in Australia for 15 years.",
+  "I made provincials in tennis (we got absolutely clapped, but still counts).",
+  "I’ve been playing trumpet and violin for 10+ years.",
+  "I was in the school orchestra and jazz band (principal trumpet at one point).",
+  "I’m learning Chinese — around HSK 3 level right now.",
+  "I main Ahri and Shen in League of Legends.",
+  "I peaked Platinum in League… it’s been downhill ever since.",
+  "I’m currently reading The Three-Body Problem (三体) by Liu Cixin — highly recommend if you like sci-fi + dystopian themes.",
+  "My favorite movie is Interstellar.",
+  "My favorite series so far is either Black Mirror or Inside Job.",
+  "Recently got into C-dramas — currently watching When I Fly Towards You (WIFTY).",
+  "All-time favorite tennis player: Novak Djokovic. Right now: Jannik Sinner.",
+  "I’m trying to learn how to cook something beyond eggs and instant noodles.",
+  "I want to watch an NBA game live someday.",
+  "Back in high school, I wanted to be a mechanical engineer.",
+  "Now I hate hardware with a burning passion.",
+  "I’ve been on the local news before.",
+  "I speak English, Cantonese, Mandarin, and some Japanese.",
+  "I used to have two dogs called Dong Dong and Ji Ji."
   ],
   system: {
     uptime: "15 days, 4 hours, 12 minutes", // This will be dynamically calculated in the SystemOutput component

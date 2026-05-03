@@ -9,9 +9,9 @@ export function ResumeOutput() {
       "Resolving portfolio...",
       "Connecting to portfolio...",
       "HTTP request sent, awaiting response... 200 OK",
-      "Length: 892KB [application/pdf]",
+      "Length: 208KB [application/pdf]",
       `Saving to: '${profile.resumeFileName}'`,
-      "100%[========================================] 892KB in 0.1s",
+      "100%[========================================] 208KB in 0.1s",
       `'${profile.resumeFileName}' saved`
     ],
     []

@@ -64,6 +64,10 @@ function ChromeDots() {
 
 function moduleKey(command: string) {
   if (command.startsWith("cat ")) {
+    if (command.includes("archives/experience.txt")) {
+      return "experience";
+    }
+
     return command.replace("cat ", "").replace(".txt", "");
   }
 

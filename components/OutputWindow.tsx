@@ -31,6 +31,7 @@ function shouldScrollCommandToStart(command: string) {
   return (
     normalized === "cat about.txt" ||
     normalized.startsWith("cat experience.txt") ||
+    normalized === "cat archives/experience.txt" ||
     normalized === "cat archives/old_experience.txt" ||
     normalized === "cd projects" ||
     normalized === "open nostalgia"
