@@ -3,13 +3,36 @@
 import { useEffect, useRef, useState } from "react";
 
 const track = "/assets/Fly_Me_To_The_Moon_Lofi_Cover_No_Copyright_KLICKAUD.mp3";
-const credit = "Fly Me to the Moon (Lofi Cover) - MidnightWolfie     Original by Frank Sinatra";
+const birthday = new Date("2026-05-09T00:00:00-07:00").getTime();
+
+function getRemaining() {
+  const remaining = Math.max(0, birthday - Date.now());
+  const seconds = Math.floor(remaining / 1000);
+
+  return {
+    days: Math.floor(seconds / 86400),
+    hours: Math.floor((seconds % 86400) / 3600),
+    minutes: Math.floor((seconds % 3600) / 60),
+    seconds: seconds % 60
+  };
+}
+
+function compactBirthday({
+  days,
+  hours,
+  minutes,
+  seconds
+}: ReturnType<typeof getRemaining>) {
+  return `${String(days).padStart(2, "0")}d ${String(hours).padStart(2, "0")}h ${String(minutes).padStart(2, "0")}m ${String(seconds).padStart(2, "0")}s`;
+}
 
 export function MusicPlayer() {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
   const [volume, setVolume] = useState(0.24);
+  const [remaining, setRemaining] = useState(getRemaining);
 
   useEffect(() => {
     if (audioRef.current) {
@@ -17,6 +40,11 @@ export function MusicPlayer() {
       audioRef.current.muted = isMuted;
     }
   }, [isMuted, volume]);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => setRemaining(getRemaining()), 1000);
+    return () => window.clearInterval(timer);
+  }, []);
 
   async function togglePlayback() {
     const audio = audioRef.current;
@@ -40,67 +68,94 @@ export function MusicPlayer() {
   }
 
   return (
-    <section className="rounded-lg border border-[var(--border)] bg-[var(--bg-panel)] p-3 shadow-panel">
-      <audio ref={audioRef} src={track} preload="metadata" onEnded={() => setIsPlaying(false)} />
-      <div className="flex items-start gap-3">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/assets/midnight-wolfie.png"
-          alt=""
-          className={[
-            "h-16 w-16 shrink-0 rounded-lg border border-[var(--border)] bg-transparent object-cover",
-            isPlaying ? "music-art--playing" : "music-art--idle"
-          ].join(" ")}
-        />
-        <div className="min-w-0 flex-1">
-          <div className="overflow-hidden rounded border border-[var(--border)] bg-[var(--bg-elevated)] px-2 py-1">
-            <p className="music-ticker whitespace-nowrap font-mono text-[10px] text-[var(--text-secondary)]">
-              {credit}
-            </p>
+    <section className="rounded-lg border border-[var(--border)] bg-[var(--bg-panel)] p-2.5 shadow-panel">
+      <audio ref={audioRef} src={track} preload="metadata" loop />
+
+      <div className="mb-2 flex items-center justify-between gap-2">
+        <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--bright-orange)]">
+          lofi desk
+        </p>
+        <button
+          type="button"
+          onClick={() => setIsCollapsed((current) => !current)}
+          className="flex h-5 w-5 items-center justify-center rounded border border-[var(--border)] font-mono text-xs text-[var(--text-secondary)] transition hover:border-[var(--bright-orange)] hover:text-[var(--bright-orange)]"
+          aria-label={isCollapsed ? "Expand music and birthday panel" : "Minimize music and birthday panel"}
+        >
+          {isCollapsed ? "+" : "-"}
+        </button>
+      </div>
+
+      {isCollapsed ? (
+        <div className="font-mono text-[10px] text-[var(--text-muted)]">
+          lofi desk
+        </div>
+      ) : (
+        <div className="space-y-2">
+          <div className="flex items-start gap-2">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/assets/midnight-wolfie.png"
+              alt=""
+              className={[
+                "h-14 w-14 shrink-0 rounded-lg border border-[var(--border)] bg-transparent object-cover",
+                isPlaying ? "music-art--playing" : "music-art--idle"
+              ].join(" ")}
+            />
+            <div className="min-w-0 flex-1">
+              <p className="font-mono text-[10px] leading-4 text-[var(--text-primary)]">Fly Me to the Moon (Lofi ver.)</p>
+              <p className="font-mono text-[9px] leading-4 text-[var(--text-muted)]">MidnightWolfie</p>
+              <p className="font-mono text-[9px] leading-4 text-[var(--bright-orange)]">Copyright Free</p>
+              <div className="mt-1 flex items-center gap-1.5">
+                <button
+                  type="button"
+                  onClick={togglePlayback}
+                  className="music-control"
+                  aria-label={isPlaying ? "Pause music" : "Play music"}
+                >
+                  {isPlaying ? "Ⅱ" : "▶"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIsMuted((current) => !current)}
+                  className="music-control text-[11px]"
+                  aria-label={isMuted ? "Unmute music" : "Mute music"}
+                >
+                  {isMuted ? "M" : "♪"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => adjustVolume(-0.08)}
+                  className="rounded border border-[var(--border)] px-2 py-1 font-mono text-xs text-[var(--text-secondary)] transition hover:border-[var(--bright-orange)] hover:text-[var(--bright-orange)]"
+                  aria-label="Volume down"
+                >
+                  -
+                </button>
+                <button
+                  type="button"
+                  onClick={() => adjustVolume(0.08)}
+                  className="rounded border border-[var(--border)] px-2 py-1 font-mono text-xs text-[var(--text-secondary)] transition hover:border-[var(--bright-orange)] hover:text-[var(--bright-orange)]"
+                  aria-label="Volume up"
+                >
+                  +
+                </button>
+                <span className="ml-auto font-mono text-[9px] text-[var(--text-muted)]">{Math.round((isMuted ? 0 : volume) * 100)}%</span>
+              </div>
+            </div>
           </div>
-          <div className="mt-2 flex items-center gap-1.5">
-            <button
-              type="button"
-              onClick={togglePlayback}
-              className="rounded p-1 opacity-85 transition hover:opacity-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
-              aria-label={isPlaying ? "Pause music" : "Play music"}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={isPlaying ? "/assets/pause_circle_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" : "/assets/play_circle_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg"}
-                alt=""
-                className="h-5 w-5 rounded-full bg-[var(--accent)]"
-              />
-            </button>
-            <button
-              type="button"
-              onClick={() => setIsMuted((current) => !current)}
-              className="rounded p-1 opacity-85 transition hover:opacity-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
-              aria-label={isMuted ? "Unmute music" : "Mute music"}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/assets/volume_off_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg" alt="" className="h-5 w-5 rounded-full bg-[var(--accent)]" />
-            </button>
-            <button
-              type="button"
-              onClick={() => adjustVolume(-0.08)}
-              className="rounded border border-[var(--border)] px-2 py-0.5 font-mono text-xs text-[var(--text-secondary)] transition hover:border-[var(--bright-orange)] hover:text-[var(--bright-orange)]"
-              aria-label="Volume down"
-            >
-              -
-            </button>
-            <button
-              type="button"
-              onClick={() => adjustVolume(0.08)}
-              className="rounded border border-[var(--border)] px-2 py-0.5 font-mono text-xs text-[var(--text-secondary)] transition hover:border-[var(--bright-orange)] hover:text-[var(--bright-orange)]"
-              aria-label="Volume up"
-            >
-              +
-            </button>
-            <span className="ml-auto font-mono text-[10px] text-[var(--text-muted)]">{Math.round((isMuted ? 0 : volume) * 100)}%</span>
+
+          <div className="rounded-md border border-[var(--border)] bg-[var(--bg-elevated)] p-2">
+            <div className="min-w-0 flex-1">
+              <p className="font-mono text-[10px] font-semibold text-[var(--bright-orange)]">Countdown to my Birthday!!</p>
+              <p className="mt-1 font-mono text-sm font-semibold text-[var(--text-primary)]">{compactBirthday(remaining)}</p>
+            </div>
+          </div>
+
+          <div className="rounded border border-[var(--border)] bg-[var(--bg-elevated)] px-2 py-1">
+            <p className="font-mono text-[9px] text-[var(--text-secondary)]">Fly Me to the Moon (Lofi ver.) - MidnightWolfie</p>
+            <p className="font-mono text-[9px] text-[var(--text-muted)]">Original ver. By Frank Sinatra</p>
           </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }

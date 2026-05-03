@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { BirthdayCountdown } from "@/components/BirthdayCountdown";
 import { ChibiFunFacts } from "@/components/ChibiFunFacts";
 import { ControlPanel } from "@/components/ControlPanel";
 import { MusicPlayer } from "@/components/MusicPlayer";
@@ -90,7 +89,6 @@ export function SystemInterface() {
           <div className="grid gap-3 lg:grid-cols-[12rem_1fr_12rem] lg:items-start">
             <div className="space-y-3">
               <MusicPlayer />
-              <BirthdayCountdown />
             </div>
             <div className="min-w-0 text-center">
               <p className="font-mono text-sm text-[var(--text-secondary)]">

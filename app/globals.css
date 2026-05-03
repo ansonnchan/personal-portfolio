@@ -153,6 +153,29 @@ input {
   transform: translateY(0);
 }
 
+.music-control {
+  display: inline-flex;
+  height: 2rem;
+  width: 2rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: var(--bg-panel);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1;
+  box-shadow: 0 0 0 2px var(--orange-soft);
+  transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.music-control:hover {
+  background: var(--orange-soft);
+  transform: translateY(-1px);
+}
+
 @keyframes cursor-blink {
   0%,
   45% {
@@ -161,15 +184,6 @@ input {
   46%,
   100% {
     opacity: 0;
-  }
-}
-
-@keyframes ticker-scroll {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(-100%);
   }
 }
 
