@@ -6,16 +6,21 @@ export type EducationItem = {
   school: string;
   degree: string;
   years: string;
+  location?: string;
   coursework: string[];
   notes: string;
-  
 };
 
 export type ExperienceItem = {
+  id: string;
   role: string;
   company: string;
+  location: string;
   period: string;
+  techStack: string[];
   highlights: string[];
+  metrics: string[];
+  url?: string;
 };
 
 export type SkillGroups = {
@@ -28,10 +33,16 @@ export type SkillGroups = {
 export type ProjectItem = {
   id: string;
   name: string;
-  description: string;
-  stack: string[];
-  github: string;
-  live: string;
+  summary: string;
+  technicalSummary: string;
+  techStack: string[];
+  metrics: string[];
+  links: {
+    github?: string;
+    live?: string;
+  };
+  built: string[];
+  problem: string;
   featured: boolean;
 };
 
@@ -46,6 +57,14 @@ export type Profile = {
   socials: Record<SocialKey, string>;
   resume: string;
   resumeFileName: string;
+  assets: {
+    favicon: string;
+    profileCurrent: string;
+    profileKid: string;
+    chibi: string;
+    resumeIcon: string;
+  };
+  funFacts: string[];
   system: {
     uptime: string;
     build: string;

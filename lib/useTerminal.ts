@@ -1,8 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import { autocompleteCommand, isResumeCommand, parseCommand, splitCommand } from "@/lib/commands";
-import { profile } from "@/lib/profileData";
+import { autocompleteCommand, parseCommand, splitCommand } from "@/lib/commands";
 import type { CommandBlock } from "@/types";
 
 type HistoryDirection = "up" | "down";
@@ -61,9 +60,6 @@ export function useTerminal() {
     setActiveModule(parsed.activeModule);
     setCurrentInput("");
 
-    if (isResumeCommand(commandText) && typeof window !== "undefined") {
-      window.open(profile.resume, "_blank", "noopener,noreferrer");
-    }
   }, [clearHistory]);
 
   const navigateHistory = useCallback((direction: HistoryDirection) => {

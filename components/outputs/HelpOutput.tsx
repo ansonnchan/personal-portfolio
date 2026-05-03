@@ -14,7 +14,7 @@ export function HelpOutput({ commands }: { commands: CommandDefinition[] }) {
           key={command.name}
           className="grid grid-cols-[minmax(7rem,0.8fr)_1.5fr] gap-3 border-b border-[var(--border)] px-4 py-3 text-sm last:border-b-0"
         >
-          <code className="font-mono text-[var(--accent)]">{command.name}</code>
+          <code className="font-mono text-[var(--command)]">{command.name}</code>
           <span className="text-[var(--text-secondary)]">{command.description}</span>
         </div>
       ))}

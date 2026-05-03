@@ -6,7 +6,6 @@ import type { SocialKey } from "@/types";
 const labels: Record<SocialKey, string> = {
   github: "GitHub",
   linkedin: "LinkedIn",
-  twitter: "Twitter",
   email: "Email"
 };
 
