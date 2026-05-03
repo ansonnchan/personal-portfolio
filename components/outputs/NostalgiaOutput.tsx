@@ -13,7 +13,7 @@ const photos = [
 ];
 
 const captions = [
-  "I really wore alphabet pajamas. Adelaide, Australia 2013",
+  "Y'all, I really wore alphabet pajamas. Adelaide, Australia 2013",
   "I was really using lines on my violin LOL. Adelaide, Australia 2013",
   "I promise I don't hold chopsticks like that anymore. Sydney, Australia 2013",
   "Superman + apple juice + pachinko. Fukuoka, Japan 2011",
@@ -118,11 +118,15 @@ export function NostalgiaOutput() {
               ‹
             </button>
           <figure
-            className="relative max-h-[90vh] max-w-4xl overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--bg-panel)] shadow-lift"
+            className="relative w-full max-w-4xl overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--bg-panel)] shadow-lift"
             onClick={(event) => event.stopPropagation()}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={selectedPhoto} alt="" className="max-h-[78vh] w-full object-contain" />
+            <img
+              src={selectedPhoto}
+              alt=""
+              className="aspect-[4/3] max-h-[78vh] w-full bg-black/5 object-contain"
+            />
             <figcaption className="flex items-center justify-between gap-3 px-4 py-3 font-mono text-xs text-[var(--bright-orange)]">
               <span>{selectedCaption}</span>
               <button
