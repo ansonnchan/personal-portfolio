@@ -122,6 +122,23 @@ input {
   animation: cursor-blink 1s steps(2, start) infinite;
 }
 
+.output-terminal {
+  transition: inset 180ms ease, height 180ms ease, min-height 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.terminal--maximized {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  height: 100%;
+  min-height: 0;
+}
+
+.terminal--minimized {
+  height: 2.5rem;
+  min-height: 2.5rem;
+}
+
 @keyframes cursor-blink {
   0%,
   45% {

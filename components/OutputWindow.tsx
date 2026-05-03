@@ -4,8 +4,6 @@ import { useEffect, useRef, useState, type KeyboardEvent, type RefObject } from 
 import { profile } from "@/lib/profileData";
 import type { CommandBlock } from "@/types";
 
-type TerminalWindowState = "normal" | "minimized" | "maximized";
-
 type OutputWindowProps = {
   history: CommandBlock[];
   currentInput: string;
@@ -18,7 +16,7 @@ type OutputWindowProps = {
 
 const welcomeLines = [
   "Resolving portfolio...",
-  "Connecting to recruiter-friendly interface...",
+  "Connecting to user-friendly interface...",
   "HTTP request sent, awaiting response... 200 OK",
   "",
   `${profile.name} terminal ready.`,
@@ -120,8 +118,16 @@ function WelcomeState() {
 }
 
 function CommandBlockView({ block }: { block: CommandBlock }) {
+  const blockRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (block.command === "cd projects") {
+      blockRef.current?.scrollIntoView({ block: "start" });
+    }
+  }, [block.command]);
+
   return (
-    <article className="space-y-3 border-b border-[var(--border)] p-5 last:border-b-0">
+    <article ref={blockRef} className="space-y-3 border-b border-[var(--border)] p-5 last:border-b-0">
       <PromptLine command={block.command} />
       <div className="font-mono text-sm text-[var(--text-primary)]">{block.output}</div>
     </article>
@@ -138,13 +144,17 @@ export function OutputWindow({
   inputRef
 }: OutputWindowProps) {
   const endRef = useRef<HTMLDivElement>(null);
-  const [windowState, setWindowState] = useState<TerminalWindowState>("normal");
-  const isMinimized = windowState === "minimized";
-  const isMaximized = windowState === "maximized";
+  const [isMinimized, setIsMinimized] = useState(false);
+  const [isMaximized, setIsMaximized] = useState(false);
+  const lastCommand = history[history.length - 1]?.command;
 
   useEffect(() => {
+    if (lastCommand === "cd projects") {
+      return;
+    }
+
     endRef.current?.scrollIntoView({ block: "end" });
-  }, [history.length]);
+  }, [history.length, lastCommand]);
 
   function handleKeyDown(event: KeyboardEvent<HTMLInputElement>) {
     if (event.key === "Enter") {
@@ -194,15 +204,21 @@ export function OutputWindow({
   return (
     <section
       className={[
-        "terminal-scan flex overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--bg-panel)] shadow-panel",
-        isMaximized ? "absolute inset-0 z-40" : isMinimized ? "h-10 min-h-10" : "h-full min-h-0"
+        "terminal-scan output-terminal flex overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--bg-panel)] shadow-panel",
+        isMaximized ? "terminal--maximized" : isMinimized ? "terminal--minimized" : "h-full min-h-0"
       ].join(" ")}
     >
       <div className="flex min-w-0 flex-1 flex-col">
         <div className="flex h-10 items-center gap-3 border-b border-[var(--border)] bg-[var(--bg-elevated)] px-3">
           <ChromeDots
-            onMinimize={() => setWindowState("minimized")}
-            onMaximize={() => setWindowState((current) => (current === "normal" ? "maximized" : "normal"))}
+            onMinimize={() => {
+              setIsMaximized(false);
+              setIsMinimized(true);
+            }}
+            onMaximize={() => {
+              setIsMinimized(false);
+              setIsMaximized((current) => !current);
+            }}
           />
           <span className="font-mono text-xs font-semibold text-[var(--text-muted)]">
             visitor@{profile.handle} ~ %
@@ -210,7 +226,8 @@ export function OutputWindow({
         </div>
 
         <div className={["min-h-0 flex-1 overflow-y-auto bg-[linear-gradient(180deg,var(--bg-panel),var(--bg-base))]", isMinimized ? "hidden" : ""].join(" ")}>
-          {history.length === 0 ? <WelcomeState /> : history.map((block) => <CommandBlockView key={block.id} block={block} />)}
+          <WelcomeState />
+          {history.map((block) => <CommandBlockView key={block.id} block={block} />)}
           {inputLine}
           <div ref={endRef} />
         </div>
