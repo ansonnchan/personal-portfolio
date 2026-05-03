@@ -19,11 +19,13 @@ const welcomeLines = [
   "Connecting to user-friendly interface...",
   "HTTP request sent, awaiting response... 200 OK",
   "",
-  `${profile.name} terminal ready.`,
+  `${profile.name}'s terminal ready.`,
   "Type 'help', 'ls', or select a command from the left.",
   "",
   `visitor@${profile.handle} ~ %`
 ];
+
+const readyLine = `${profile.name}'s terminal ready.`;
 
 function playDisabledClick() {
   const AudioContextClass =
@@ -93,7 +95,7 @@ function WelcomeState() {
       {welcomeLines.map((line, index) => (
         <p
           key={`${line}-${index}`}
-          className={line === `${profile.name} terminal ready.` ? "pt-2 text-[var(--accent)]" : undefined}
+          className={line === readyLine ? "pt-2 text-[var(--bright-orange)]" : undefined}
         >
           {line || "\u00a0"}
         </p>

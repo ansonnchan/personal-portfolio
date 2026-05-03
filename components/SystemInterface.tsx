@@ -98,24 +98,13 @@ export function SystemInterface() {
                 Anson&apos;s Terminal
                 <span className="terminal-cursor ml-2 inline-block h-8 w-3 translate-y-1 bg-[var(--accent)]" />
               </h1>
-              <p className="mt-1 text-sm font-semibold text-[var(--text-primary)]">Anson Chan &bull; CPEN @ UBC</p>
+              <p className="mt-1 text-sm font-semibold text-[var(--text-primary)]">Anson Chan &bull; CPEN @ UBC &bull; 陳雋希</p>
             </div>
-            <div className="flex flex-wrap items-start justify-center gap-2 font-mono text-xs text-[var(--text-secondary)] lg:justify-end">
-              <div className="rounded-md border border-[var(--border)] bg-[var(--bg-elevated)] px-3 py-2 text-right">
-                <time className="block text-[var(--text-primary)]">{clock}</time>
-                <span className="mt-1 block text-[var(--text-secondary)]">{dateLabel}</span>
-              </div>
-              <a
-                href={profile.resume}
-                download={profile.resumeFileName}
-                className="rounded-md border border-[var(--accent)] bg-[var(--accent)] px-2.5 py-1.5 font-semibold text-white transition hover:brightness-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
-              >
-                Download resume
-              </a>
+            <div className="flex items-start justify-center gap-2 font-mono text-xs text-[var(--text-secondary)] lg:justify-end">
               <button
                 type="button"
                 onClick={() => setTheme((current) => (current === "dark" ? "light" : "dark"))}
-                className="p-1 opacity-80 transition hover:opacity-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+                className="mt-1 p-1 opacity-80 transition hover:opacity-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
                 aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -125,6 +114,19 @@ export function SystemInterface() {
                   className="h-5 w-5"
                 />
               </button>
+              <div className="flex flex-col items-stretch gap-2">
+                <div className="rounded-md border border-[var(--border)] bg-[var(--bg-elevated)] px-3 py-2 text-right">
+                  <time className="block text-[var(--text-primary)]">{clock}</time>
+                  <span className="mt-1 block text-[var(--text-secondary)]">{dateLabel}</span>
+                </div>
+                <a
+                  href={profile.resume}
+                  download={profile.resumeFileName}
+                  className="rounded-md border border-[var(--accent)] bg-[var(--accent)] px-2.5 py-1.5 text-center font-semibold text-white transition hover:brightness-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+                >
+                  Download resume
+                </a>
+              </div>
             </div>
           </div>
         </header>

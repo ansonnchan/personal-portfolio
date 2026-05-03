@@ -22,20 +22,49 @@ type CommandSpec = {
 const portfolioFiles = ["about.txt", "education.txt", "experience.txt", "projects/", "skills/", "resume.pdf"];
 
 const commandSpecs = [
-  { name: "help", description: "Show all available commands with descriptions", activeModule: "help" },
-  { name: "ls", description: "List portfolio files", activeModule: "system" },
-  { name: "cat about.txt", description: "Display bio, identity, and quick facts", activeModule: "about" },
-  { name: "cat education.txt", description: "Show academic background", activeModule: "education" },
-  { name: "cat experience.txt", description: "Show work history and impact notes", activeModule: "experience" },
-  { name: "cd projects", description: "Show all projects", activeModule: "projects" },
-  { name: "ls ./skills/", description: "Show grouped technical stack", activeModule: "skills" },
-  { name: "open [project-id]", description: "Print detailed CLI output for a project", activeModule: "projects" },
-  { name: "open nostalgia", description: "Open old-photo gallery", activeModule: "nostalgia" },
-  { name: "cat experience.txt [id]", description: "Print detailed CLI output for an experience", activeModule: "experience" },
-  { name: "whereis socials", description: "Show links and email", activeModule: "whereis" },
-  { name: "wget resume.pdf", description: "Download resume with terminal progress", activeModule: "resume" },
-  { name: "system", description: "Run interface diagnostics", activeModule: "system" },
-  { name: "clear", description: "Clear the output log", activeModule: null }
+  { name: "help", 
+    description: "Show all available commands with descriptions", 
+    activeModule: "help" },
+  { name: "ls", 
+    description: "List portfolio files", 
+    activeModule: 
+    "system" },
+  { name: "cat about.txt", 
+    description: "Display bio, identity, and quick facts", 
+    activeModule: "about" },
+  { name: "cat education.txt", 
+    description: "Show academic background", 
+    activeModule: "education" },
+  { name: "cat experience.txt", 
+    description: "Show work history and impact notes", 
+    activeModule: "experience" },
+  { name: "cd projects", 
+    description: "Show all projects", 
+    activeModule: "projects" },
+  { name: "ls ./skills/", 
+    description: "Show tech stack", 
+    activeModule: "skills" },
+  // { name: "open [project-id]", 
+  //   description: "Print detailed CLI output for a project", 
+  //   activeModule: "projects" },
+  { name: "open nostalgia", 
+    description: "Open old-photo gallery", 
+    activeModule: "nostalgia" },
+  { name: "cat experience.txt [id]", 
+    description: "Print detailed CLI output for an experience", 
+    activeModule: "experience" },
+  { name: "whereis socials", 
+    description: "Show links and email", 
+    activeModule: "whereis" },
+  { name: "wget resume.pdf", 
+    description: "Download resume with terminal progress", 
+    activeModule: "resume" },
+  { name: "system", 
+    description: "Run interface diagnostics", 
+    activeModule: "system" },
+  { name: "clear", 
+    description: "Clear the output log", 
+    activeModule: null }
 ] satisfies CommandSpec[];
 
 const helpCommands = commandSpecs.map((command) => ({
@@ -49,7 +78,7 @@ export const moduleSections = [
   {
     title: "SYSTEM",
     items: [
-      { command: "cat about.txt", description: "Personal info" },
+      { command: "cat about.txt", description: "About Me" },
       { command: "system", description: "Runtime diagnostics" }
     ]
   },
@@ -151,19 +180,19 @@ export const commandRegistry: Record<string, CommandDefinition> = {
       ? React.createElement(NostalgiaOutput)
       : React.createElement(OpenProjectOutput, { projectId: args[0] ?? "" })
   ),
-  whereis: defineCommand(commandSpecs[10], (args) =>
+  whereis: defineCommand(commandSpecs[9], (args) =>
     args[0]?.toLowerCase() === "socials"
       ? React.createElement(ContactOutput)
       : React.createElement(UnknownOutput, { command: `whereis ${args.join(" ")}` })
   ),
-  wget: defineCommand(commandSpecs[11], (args) =>
+  wget: defineCommand(commandSpecs[10], (args) =>
     args[0]?.toLowerCase() === "resume.pdf"
       ? React.createElement(ResumeOutput)
       : React.createElement(UnknownOutput, { command: `wget ${args.join(" ")}` })
   ),
-  resume: defineCommand(commandSpecs[11], () => React.createElement(ResumeOutput)),
-  system: defineCommand(commandSpecs[12], () => React.createElement(SystemOutput, { modules: loadedModules })),
-  clear: defineCommand(commandSpecs[13], () => null)
+  resume: defineCommand(commandSpecs[10], () => React.createElement(ResumeOutput)),
+  system: defineCommand(commandSpecs[11], () => React.createElement(SystemOutput, { modules: loadedModules })),
+  clear: defineCommand(commandSpecs[12], () => null)
 };
 
 export function splitCommand(input: string) {

@@ -68,7 +68,7 @@ export function MusicPlayer() {
   }
 
   return (
-    <section className="rounded-lg border border-[var(--border)] bg-[var(--bg-panel)] p-2.5 shadow-panel">
+    <section className="rounded-lg border border-[var(--border)] bg-[var(--bg-panel)] p-2.5">
       <audio ref={audioRef} src={track} preload="metadata" loop />
 
       <div className="mb-2 flex items-center justify-between gap-2">
