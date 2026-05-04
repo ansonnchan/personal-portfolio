@@ -43,6 +43,7 @@ export type ProjectItem = {
   };
   built: string[];
   problem: string;
+  callout?: string;
   featured: boolean;
 };
 

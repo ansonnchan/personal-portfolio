@@ -34,6 +34,7 @@ function shouldScrollCommandToStart(command: string) {
     normalized === "cat archives/experience.txt" ||
     normalized === "cat archives/old_experience.txt" ||
     normalized === "cd projects" ||
+    normalized === "ls" ||
     normalized === "ls ./skills/" ||
     normalized === "ls ./skills" ||
     normalized === "ls skills/" ||

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { profile } from "@/lib/profileData";
 import type { ProjectItem } from "@/types";
 
@@ -49,6 +49,12 @@ function ProjectLinks({ project }: { project: ProjectItem }) {
 
 export function ProjectsOutput() {
   const [previewProjectIds, setPreviewProjectIds] = useState<string[]>([]);
+  const [selectedScreenshot, setSelectedScreenshot] = useState<{ projectId: string; index: number } | null>(null);
+  const selectedProject = selectedScreenshot
+    ? profile.projects.find((project) => project.id === selectedScreenshot.projectId) ?? null
+    : null;
+  const selectedShots = selectedScreenshot ? PROJECT_ASSETS[selectedScreenshot.projectId.toLowerCase()] ?? [] : [];
+  const selectedShot = selectedScreenshot ? selectedShots[selectedScreenshot.index] : null;
 
   function toggleProjectPreview(projectId: string) {
     setPreviewProjectIds((current) =>
@@ -57,6 +63,59 @@ export function ProjectsOutput() {
         : [...current, projectId]
     );
   }
+
+  function showPreviousScreenshot() {
+    setSelectedScreenshot((current) => {
+      if (!current) {
+        return null;
+      }
+
+      const shots = PROJECT_ASSETS[current.projectId.toLowerCase()] ?? [];
+      return {
+        projectId: current.projectId,
+        index: (current.index + shots.length - 1) % shots.length
+      };
+    });
+  }
+
+  function showNextScreenshot() {
+    setSelectedScreenshot((current) => {
+      if (!current) {
+        return null;
+      }
+
+      const shots = PROJECT_ASSETS[current.projectId.toLowerCase()] ?? [];
+      return {
+        projectId: current.projectId,
+        index: (current.index + 1) % shots.length
+      };
+    });
+  }
+
+  useEffect(() => {
+    if (!selectedScreenshot) {
+      return;
+    }
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        showPreviousScreenshot();
+      }
+
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        showNextScreenshot();
+      }
+
+      if (event.key === "Escape") {
+        setSelectedScreenshot(null);
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedScreenshot]);
 
   return (
     <div className="space-y-6">
@@ -78,8 +137,15 @@ export function ProjectsOutput() {
             <ul className="mt-4 space-y-1 text-sm leading-6 text-[var(--text-secondary)]">
               <li>- {project.technicalSummary}</li>
               <li>- {project.problem}</li>
-              <li>- Add a project achievement here.</li>
+              {project.built.map((item) => (
+                <li key={item}>- {item}</li>
+              ))}
             </ul>
+            {project.callout ? (
+              <p className="mt-4 rounded-md border border-[var(--accent-green)]/40 bg-[var(--bg-elevated)] px-3 py-2 font-mono text-sm text-[var(--accent-green)]">
+                {project.callout}
+              </p>
+            ) : null}
 
             {/* Only render button if images exist for this project */}
             {currentShots.length > 0 && (
@@ -95,17 +161,22 @@ export function ProjectsOutput() {
             {previewProjectIds.includes(project.id) && currentShots.length > 0 ? (
               <div className="mt-3 grid gap-3 sm:grid-cols-2">
                 {currentShots.map((shot, index) => (
-                  <figure key={shot} className="rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-3">
+                  <button
+                    key={shot}
+                    type="button"
+                    onClick={() => setSelectedScreenshot({ projectId: project.id, index })}
+                    className="group rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-3 text-left transition hover:border-[var(--bright-orange)] hover:shadow-lift focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+                  >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img 
                       src={shot} 
                       alt={`${project.name} screenshot ${index + 1}`} 
-                      className="aspect-video w-full rounded border border-[var(--border)] bg-white object-contain p-4" 
+                      className="aspect-video w-full rounded border border-[var(--border)] bg-white object-contain p-4 transition duration-200 group-hover:scale-[1.01]" 
                     />
-                    <figcaption className="mt-2 font-mono text-xs text-[var(--text-muted)]">
+                    <span className="mt-2 block font-mono text-xs text-[var(--text-muted)]">
                       {project.name} preview {index + 1}
-                    </figcaption>
-                  </figure>
+                    </span>
+                  </button>
                 ))}
               </div>
             ) : null}
@@ -114,6 +185,63 @@ export function ProjectsOutput() {
           </article>
         );
       })}
+
+      {selectedShot && selectedProject ? (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setSelectedScreenshot(null)}
+        >
+          <div className="flex w-full max-w-6xl items-center justify-center gap-3 sm:gap-5">
+            <button
+              type="button"
+              onClick={(event) => {
+                event.stopPropagation();
+                showPreviousScreenshot();
+              }}
+              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-[var(--bright-orange)] bg-[var(--bg-panel)]/95 font-mono text-4xl leading-none text-[var(--bright-orange)] shadow-lift transition hover:bg-[var(--orange-soft)]"
+              aria-label="Previous screenshot"
+            >
+              ‹
+            </button>
+            <figure
+              className="relative w-full max-w-5xl overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--bg-panel)] shadow-lift"
+              onClick={(event) => event.stopPropagation()}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={selectedShot}
+                alt={`${selectedProject.name} screenshot ${(selectedScreenshot?.index ?? 0) + 1}`}
+                className="aspect-video max-h-[78vh] w-full bg-white object-contain p-4"
+              />
+              <figcaption className="flex items-center justify-between gap-3 px-4 py-3 font-mono text-xs text-[var(--bright-orange)]">
+                <span>
+                  {selectedProject.name} screenshot {(selectedScreenshot?.index ?? 0) + 1} / {selectedShots.length}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setSelectedScreenshot(null)}
+                  className="rounded-full border border-[var(--border)] px-3 py-1 text-[var(--text-secondary)] hover:border-[var(--bright-orange)] hover:text-[var(--bright-orange)]"
+                >
+                  close
+                </button>
+              </figcaption>
+            </figure>
+            <button
+              type="button"
+              onClick={(event) => {
+                event.stopPropagation();
+                showNextScreenshot();
+              }}
+              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-[var(--bright-orange)] bg-[var(--bg-panel)]/95 font-mono text-4xl leading-none text-[var(--bright-orange)] shadow-lift transition hover:bg-[var(--orange-soft)]"
+              aria-label="Next screenshot"
+            >
+              ›
+            </button>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -138,8 +266,15 @@ export function OpenProjectOutput({ projectId }: { projectId: string }) {
       <p className="mt-4 text-sm text-[var(--accent-green)]">{project.techStack.join(" / ")}</p>
       <ul className="mt-4 space-y-1 text-sm leading-6 text-[var(--text-secondary)]">
         <li>- {project.problem}</li>
-        <li>- Add a project achievement here.</li>
+        {project.built.map((item) => (
+          <li key={item}>- {item}</li>
+        ))}
       </ul>
+      {project.callout ? (
+        <p className="mt-4 rounded-md border border-[var(--accent-green)]/40 bg-[var(--bg-elevated)] px-3 py-2 font-mono text-sm text-[var(--accent-green)]">
+          {project.callout}
+        </p>
+      ) : null}
       <ProjectLinks project={project} />
     </article>
   );

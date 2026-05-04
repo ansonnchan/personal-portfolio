@@ -37,13 +37,16 @@ I care about crisp interfaces, resilient services, and tools that give people mo
   "My favorite series so far is either Black Mirror or Inside Job.",
   "Recently got into C-dramas — currently watching When I Fly Towards You (WIFTY).",
   "All-time favorite tennis player: Novak Djokovic. Right now: Jannik Sinner.",
+  "My GOAT is Lebron James.",
+  "I want to visit Switzerland and Rome someday.",
+  "I love listening to classical msusic while working (Beethoven's counterpoint are unmatched).",
   "I’m trying to learn how to cook something beyond eggs and instant noodles.",
   "I want to watch an NBA game live someday.",
   "Back in high school, I wanted to be a mechanical engineer.",
-  "Now I hate hardware with a burning passion.",
+  "I hate hardware with a burning passion.",
   "I’ve been on the local news before.",
   "I speak English, Cantonese, Mandarin, and some Japanese.",
-  "I used to have two dogs called Dong Dong and Ji Ji."
+  "I used to have two dogs called Dong Dong and Ji Ji.",
   ],
   system: {
     uptime: "15 days, 4 hours, 12 minutes", // This will be dynamically calculated in the SystemOutput component
@@ -103,8 +106,8 @@ I care about crisp interfaces, resilient services, and tools that give people mo
     {
       id: "portfolio",
       name: "Portfolio",
-      summary: "A terminal OS-inspired portfolio built for fast recruiter scanning and playful exploration.",
-      technicalSummary: "A Next.js command interface with typed portfolio data, command history, live prompt metadata, expandable CLI outputs, and responsive terminal-inspired UI states.",
+      summary: "A terminal OS-inspired portfolio.",
+      technicalSummary: "Built a live command system to navigate projects, experience, and personal content",
       techStack: ["TypeScript", "React", "Next.js", "Tailwind CSS", "Framer Motion"],
       metrics: ["live command system", "responsive UI", "typed content model"],
       links: {
@@ -112,30 +115,30 @@ I care about crisp interfaces, resilient services, and tools that give people mo
         live: "https://ansonnchan.dev"
       },
       built: [
-        "Terminal command parser and history renderer",
-        "Recruiter-friendly output modules",
-        "Responsive light-terminal visual system"
+        "ARCHIVED_PHOTOS.zip - childhood photo collection",
+        "BGM_03: Fly Me to the Moon (Lo-fi Remix)",
+        "birthday.exe"
       ],
-      problem: "Makes a software portfolio memorable without slowing down the reader who just wants evidence of skills and impact.",
+      problem: "FUN_FACTS.log - explore what makes me, me",
+      callout:  "Had a lot of fun making this. Hope you enjoy exploring every last secret this portfolio offers.",
       featured: true
     },
     {
       id: "vent.ai",
       name: "vent.ai",
-      summary: "An AI-powered reflection app for exploring thoughts through personality-driven perspectives.",
-      technicalSummary: "A Next.js app integrating Groq-powered AI responses with a focused writing experience, perspective selection, and structured conversational output for self-reflection.",
-      techStack: ["TypeScript", "React", "Next.js", "Groq SDK"],
-      metrics: ["AI reflection flows", "multi-perspective prompts", "deployed web app"],
+      summary: "An AI-powered venting app. Talk to 5 different AI personalities. Crash out to your heart's content.",
+      technicalSummary: "Supports five AI personalities with different response styles, from chill and casual to more direct and critical.",
+      techStack: ["TypeScript", "React", "Next.js", "Groq SDK", "Upstash Redis"],
+      metrics: ["40+ users", "5 AI personalities", "rate-limited AI inputs"],
       links: {
         github: "https://github.com/ansonnchan/vent.ai",
         live: "https://ventai-web.vercel.app"
       },
       built: [
-        "Prompt-driven reflection experience",
-        "Personality perspective switching",
-        "Clean web interface for journaling-style interaction"
+        "Implemented Upstash Redis rate limiting to control usage and prevent abuse under concurrent requests",
       ],
-      problem: "Helps users reframe messy thoughts into clearer perspectives without feeling like they are using a clinical productivity tool.",
+      problem:         "Integrated Groq API with streamed responses for low-latency, real-time feedback",
+      callout: "If you wanna crash out, crash out here.",
       featured: true
     },
     

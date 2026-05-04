@@ -73,7 +73,7 @@ export function MusicPlayer() {
 
       <div className="mb-2 flex items-center justify-between gap-2">
         <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--bright-orange)]">
-          lofi desk
+          lo-fi desk
         </p>
         <button
           type="button"
@@ -125,7 +125,7 @@ export function MusicPlayer() {
               </div>
             </div>
             <div className="min-w-0 flex-1">
-              <p className="max-w-[7rem] font-mono text-[9px] leading-4 text-[var(--text-primary)]">Fly Me to the Moon (Lofi ver.)</p>
+              <p className="max-w-[7rem] font-mono text-[9px] leading-4 text-[var(--text-primary)]">Fly Me to the Moon (Lofi Ver.)</p>
               <p className="font-mono text-[9px] leading-4 text-[var(--text-muted)]">MidnightWolfie</p>
               <p className="font-mono text-[9px] leading-4 text-[var(--bright-orange)]">Copyright Free</p>
               <div className="mt-2 flex items-center gap-1.5">
