@@ -34,6 +34,7 @@ function shouldScrollCommandToStart(command: string) {
     normalized === "cat archives/experience.txt" ||
     normalized === "cat archives/old_experience.txt" ||
     normalized === "cd projects" ||
+    normalized === "help" ||
     normalized === "ls" ||
     normalized === "ls ./skills/" ||
     normalized === "ls ./skills" ||
@@ -201,6 +202,9 @@ export function OutputWindow({
         autoComplete="off"
         spellCheck={false}
       />
+      <span className="hidden shrink-0 rounded border border-[var(--border)] bg-[var(--bg-elevated)] px-2 py-1 font-sans text-[11px] text-[var(--text-muted)] sm:inline">
+        💡 Pro Tip: clear resets the terminal.
+      </span>
     </label>
   );
 

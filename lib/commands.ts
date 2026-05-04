@@ -26,8 +26,7 @@ const commandSpecs = [
     activeModule: "help" },
   { name: "ls", 
     description: "List portfolio files", 
-    activeModule: 
-    "system" },
+    activeModule: "ls" },
   { name: "cat about.txt", 
     description: "Display bio, identity, and quick facts", 
     activeModule: "about" },
@@ -171,7 +170,7 @@ function PortfolioTreeOutput() {
     React.createElement(
       "p",
       { className: "text-[var(--text-muted)]" },
-      "Tip: Use ",
+      "💡 Pro tip: Use ",
       React.createElement("code", { className: "text-[var(--command)]" }, "cat archives/experience.txt"),
       " to view archived experiences."
     )
@@ -274,8 +273,10 @@ export function parseCommand(input: string) {
         ? activeModuleByCatFile[args[0]?.toLowerCase() ?? ""] ?? null
         : base === "cd" && args[0]?.toLowerCase() === "projects"
           ? "projects"
-        : base === "ls" && args[0]?.toLowerCase().startsWith("./skills")
-          ? "skills"
+        : base === "ls"
+          ? args[0]?.toLowerCase().startsWith("./skills")
+            ? "skills"
+            : "ls"
           : base === "open" && args[0]?.toLowerCase() === "nostalgia"
             ? "nostalgia"
             : command.activeModule ?? null

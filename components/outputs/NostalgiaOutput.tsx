@@ -77,6 +77,10 @@ export function NostalgiaOutput() {
           </blockquote>
           <figcaption className="mt-3 text-sm font-semibold text-[var(--bright-orange)]">– John Green</figcaption>
         </figure>
+
+        <p className="mt-4 rounded-md border border-[var(--border)] bg-[var(--bg-elevated)] px-3 py-2 font-mono text-xs text-[var(--text-secondary)]">
+          💡 Pro tip: Click a photo, then use your arrow keys to browse the gallery.
+        </p>
       </section>
 
       <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

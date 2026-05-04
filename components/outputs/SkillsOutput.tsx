@@ -32,7 +32,7 @@ export function SkillsOutput() {
         <section
           key={group.title}
           className={[
-            "rounded-xl border bg-[var(--bg-panel)] p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lift",
+            "rounded-xl border bg-[var(--bg-panel)] p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-[var(--accent-green)] hover:shadow-[0_0_0_2px_var(--accent-green),0_0_24px_rgba(36,122,82,0.38)]",
             index === 1
               ? "border-[var(--text-muted)] shadow-panel"
               : "border-[var(--border)]"
