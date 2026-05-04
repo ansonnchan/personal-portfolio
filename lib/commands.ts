@@ -200,7 +200,6 @@ export const commandRegistry: Record<string, CommandDefinition> = {
   education: defineCommand(commandSpecs[3], () => React.createElement(EducationOutput)),
   experience: defineCommand(commandSpecs[4], () => React.createElement(ExperienceOutput)),
   projects: defineCommand(commandSpecs[5], () => React.createElement(ProjectsOutput)),
-  skills: defineCommand(commandSpecs[6], () => React.createElement(SkillsOutput)),
   cd: defineCommand(commandSpecs[5], (args) =>
     args[0]?.toLowerCase() === "projects"
       ? React.createElement(ProjectsOutput)

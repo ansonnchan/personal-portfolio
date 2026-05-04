@@ -202,9 +202,6 @@ export function OutputWindow({
         autoComplete="off"
         spellCheck={false}
       />
-      <span className="hidden shrink-0 rounded border border-[var(--border)] bg-[var(--bg-elevated)] px-2 py-1 font-sans text-[11px] text-[var(--text-muted)] sm:inline">
-        💡 Pro Tip: clear resets the terminal.
-      </span>
     </label>
   );
 
@@ -248,10 +245,17 @@ export function OutputWindow({
         </div>
 
         <div className={["min-h-0 flex-1 overflow-y-auto bg-[linear-gradient(180deg,var(--bg-panel),var(--bg-base))]", isMinimized ? "hidden" : ""].join(" ")}>
-          <WelcomeState />
-          {history.map((block) => <CommandBlockView key={block.id} block={block} />)}
-          {inputLine}
-          <div ref={endRef} />
+          <div className="flex min-h-full flex-col">
+            <WelcomeState />
+            {history.map((block) => <CommandBlockView key={block.id} block={block} />)}
+            {inputLine}
+            <div className="mt-auto flex justify-end px-5 pb-4 pt-2">
+              <span className="rounded border border-[var(--border)] bg-[var(--bg-elevated)] px-2.5 py-1 font-sans text-[11px] text-[var(--text-muted)] shadow-sm">
+                💡 Pro Tip: Type clear to reset the terminal.
+              </span>
+            </div>
+            <div ref={endRef} />
+          </div>
         </div>
       </div>
     </section>
