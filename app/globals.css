@@ -5,23 +5,23 @@
 :root {
   --font-sans: Inter, ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-  --bg-base: #fbf1c7;
-  --bg-panel: #fdf6d3;
-  --bg-elevated: #ebdbb2;
-  --bg-hover: #dfc995;
-  --border: #bdae93;
-  --text-primary: #3c3836;
-  --text-secondary: #665c54;
-  --text-muted: #928374;
-  --accent: #d65d0e;
-  --accent-dim: #af3a03;
-  --accent-green: #79740e;
-  --accent-yellow: #b57614;
-  --accent-red: #9d0006;
-  --command: #af3a03;
-  --bright-orange: #fe8019;
-  --orange-soft: rgba(214, 93, 14, 0.16);
-  --link: #076678;
+  --bg-base: #fbf6ec;
+  --bg-panel: #fffaf1;
+  --bg-elevated: #f2e7d6;
+  --bg-hover: #eadbc6;
+  --border: #cdb89b;
+  --text-primary: #241f19;
+  --text-secondary: #5a5148;
+  --text-muted: #7c6d5e;
+  --accent: #b45b14;
+  --accent-dim: #85400f;
+  --accent-green: #247a52;
+  --accent-yellow: #b7791f;
+  --accent-red: #b94a32;
+  --command: #9a4f12;
+  --bright-orange: #f36c12;
+  --orange-soft: rgba(243, 108, 18, 0.13);
+  --link: #8a3f0e;
 }
 
 .system-shell[data-theme="dark"] {
@@ -56,8 +56,8 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(circle at 20% 10%, rgba(214, 93, 14, 0.14), transparent 28rem),
-    linear-gradient(180deg, var(--bg-base), #ebdbb2);
+    radial-gradient(circle at 20% 10%, rgba(180, 91, 20, 0.08), transparent 28rem),
+    linear-gradient(180deg, var(--bg-base), #f1e4d1);
   color: var(--text-primary);
   font-family: var(--font-sans);
 }
@@ -110,8 +110,8 @@ input {
   inset: 0;
   background: repeating-linear-gradient(
     to bottom,
-    rgba(60, 56, 54, 0.045),
-    rgba(60, 56, 54, 0.045) 1px,
+    rgba(36, 31, 25, 0.032),
+    rgba(36, 31, 25, 0.032) 1px,
     transparent 1px,
     transparent 5px
   );
