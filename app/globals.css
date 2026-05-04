@@ -5,43 +5,43 @@
 :root {
   --font-sans: Inter, ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-  --bg-base: #f8f3ea;
-  --bg-panel: #fffdf8;
-  --bg-elevated: #efe6d7;
-  --bg-hover: #e7dccb;
-  --border: #cbbca8;
-  --text-primary: #25221d;
-  --text-secondary: #5f584f;
-  --text-muted: #807569;
-  --accent: #a85d18;
-  --accent-dim: #7c3f12;
-  --accent-green: #2f7d57;
-  --accent-yellow: #a76a15;
-  --accent-red: #b4472f;
-  --command: #8f4c16;
-  --bright-orange: #f97316;
-  --orange-soft: rgba(249, 115, 22, 0.12);
-  --link: #7c3f12;
+  --bg-base: #fbf1c7;
+  --bg-panel: #fdf6d3;
+  --bg-elevated: #ebdbb2;
+  --bg-hover: #dfc995;
+  --border: #bdae93;
+  --text-primary: #3c3836;
+  --text-secondary: #665c54;
+  --text-muted: #928374;
+  --accent: #d65d0e;
+  --accent-dim: #af3a03;
+  --accent-green: #79740e;
+  --accent-yellow: #b57614;
+  --accent-red: #9d0006;
+  --command: #af3a03;
+  --bright-orange: #fe8019;
+  --orange-soft: rgba(214, 93, 14, 0.16);
+  --link: #076678;
 }
 
 .system-shell[data-theme="dark"] {
-  --bg-base: #14100c;
-  --bg-panel: #1d1712;
-  --bg-elevated: #2a2119;
-  --bg-hover: #35281e;
-  --border: #563d2b;
-  --text-primary: #fff4e6;
-  --text-secondary: #d7c2ac;
-  --text-muted: #a58a73;
-  --accent: #fb923c;
-  --accent-dim: #c45112;
-  --accent-green: #86efac;
-  --accent-yellow: #fbbf24;
-  --accent-red: #f87171;
-  --command: #fdba74;
-  --bright-orange: #fb923c;
-  --orange-soft: rgba(251, 146, 60, 0.14);
-  --link: #fdba74;
+  --bg-base: #282828;
+  --bg-panel: #1d2021;
+  --bg-elevated: #3c3836;
+  --bg-hover: #504945;
+  --border: #665c54;
+  --text-primary: #fbf1c7;
+  --text-secondary: #ebdbb2;
+  --text-muted: #a89984;
+  --accent: #fe8019;
+  --accent-dim: #d65d0e;
+  --accent-green: #b8bb26;
+  --accent-yellow: #fabd2f;
+  --accent-red: #fb4934;
+  --command: #fabd2f;
+  --bright-orange: #fe8019;
+  --orange-soft: rgba(254, 128, 25, 0.18);
+  --link: #83a598;
 }
 
 * {
@@ -56,8 +56,8 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(circle at 20% 10%, rgba(168, 93, 24, 0.09), transparent 28rem),
-    linear-gradient(180deg, var(--bg-base), #efe6d7);
+    radial-gradient(circle at 20% 10%, rgba(214, 93, 14, 0.14), transparent 28rem),
+    linear-gradient(180deg, var(--bg-base), #ebdbb2);
   color: var(--text-primary);
   font-family: var(--font-sans);
 }
@@ -110,12 +110,23 @@ input {
   inset: 0;
   background: repeating-linear-gradient(
     to bottom,
-    rgba(43, 33, 24, 0.035),
-    rgba(43, 33, 24, 0.035) 1px,
+    rgba(60, 56, 54, 0.045),
+    rgba(60, 56, 54, 0.045) 1px,
     transparent 1px,
     transparent 5px
   );
   mix-blend-mode: multiply;
+}
+
+.system-shell[data-theme="dark"] .terminal-scan::after {
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(251, 241, 199, 0.035),
+    rgba(251, 241, 199, 0.035) 1px,
+    transparent 1px,
+    transparent 5px
+  );
+  mix-blend-mode: screen;
 }
 
 .terminal-cursor {
