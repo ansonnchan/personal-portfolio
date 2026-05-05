@@ -9,17 +9,21 @@ const photos = [
   "/assets/IMG_0916.JPG",
   "/assets/IMG_1953.JPG",
   "/assets/IMG_2256.JPG",
-  "/assets/swollen.JPG"
+  "/assets/swollen.JPG",
+  "/assets/IMG_3957.JPG",
+  "/assets/IMG_4235.JPG",
 ];
 
 const captions = [
   "Y'all, I really wore alphabet pajamas. Adelaide, Australia 2013",
-  "I was really using lines on my violin LOL. Adelaide, Australia 2013",
+  "I was really using lines on my violin (don't mind the blur it's just your graphics). Adelaide, Australia 2013",
   "I promise I don't hold chopsticks like that anymore. Sydney, Australia 2013",
   "Superman + apple juice + pachinko. Fukuoka, Japan 2011",
   "Universal Studios. I wish I was a wizard. Orlando, Florida 2016",
   "Book series was 'Unfortunate Series of Events'. Adelaide, Australia, 2016",
-  "Why was my left ear hella swollen in this photo?? Adelaide, Australia 2012"
+  "Why was my left ear hella swollen in this photo?? Also go Chelsea. Adelaide, Australia 2012",
+  "Sorting Hat is definitely putting me in Ravenclaw. Universal Studios, Orlando, Florida 2016",
+  "There's a reason why I was on the ground in this photo ... Tasmania, Australia, 2017"
 
 ];
 
