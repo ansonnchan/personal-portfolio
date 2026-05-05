@@ -21,11 +21,11 @@ const PROJECT_ASSETS: Record<string, string[]> = {
 
 function projectIcon(projectId: string) {
   if (projectId.toLowerCase() === "portfolio") {
-    return "/assets/terminal_logo.png";
+    return "/assets/favicon.png";
   }
 
   if (projectId.toLowerCase() === "vent.ai") {
-    return "/assets/vent.ai_logo.png";
+    return "/assets/vent.ai_icon.png";
   }
   
   return null; // Return null if no specific icon is found for the project
@@ -137,8 +137,18 @@ export function ProjectsOutput() {
 
         return (
           <article key={project.id} className="rounded-lg border border-[var(--border)] bg-[var(--bg-panel)] p-5">
-            <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-              <h3 className="font-mono text-lg font-semibold text-[var(--text-primary)]">{project.name}</h3>
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+              <div className="flex min-w-0 items-start gap-3">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                {projectIcon(project.id) && (
+                  <img
+                    src={projectIcon(project.id)!}  
+                    alt=""
+                    className="mt-0.5 h-11 w-11 shrink-0 rounded-md border border-[var(--border)] bg-white object-contain p-1.5"
+                  />
+                )}
+                <h3 className="font-mono text-lg font-semibold text-[var(--text-primary)]">{project.name}</h3>
+              </div>
               {project.featured ? (
                 <span className="font-mono text-xs uppercase tracking-[0.16em] text-[var(--accent)]">featured</span>
               ) : null}

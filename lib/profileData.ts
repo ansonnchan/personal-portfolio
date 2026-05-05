@@ -105,7 +105,7 @@ I care about crisp interfaces, resilient services, and tools that give people mo
   projects: [
     {
       id: "portfolio",
-      name: "Portfolio",
+      name: "Personal Portfolio",
       summary: "A terminal OS-inspired portfolio.",
       technicalSummary: "Built a live command system to navigate projects, experience, and personal content",
       techStack: ["TypeScript", "React", "Next.js", "Tailwind CSS", "Framer Motion"],

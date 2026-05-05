@@ -5,7 +5,7 @@ function schoolIcon(school: string) {
     return "/assets/ubc-logo.png";
   }
 
-  return "/assets/unisa-logo.svg";
+  return "/assets/unisa-logo.svg"; //just make default for no apparent reason ::
 }
 
 export function EducationOutput() {
