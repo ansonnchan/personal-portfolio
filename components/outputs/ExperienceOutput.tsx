@@ -66,7 +66,7 @@ function organizationIcon(company: string) {
     return "/assets/mcdonalds.png";
   }
 
-  return "/assets/unisa-logo.svg";
+  return "/assets/unisa-logo.svg"; //default icon for unisa since it's the most recent and relevant experience.
 }
 
 function HighlightText({ text, phrases }: { text: string; phrases: string[] }) {

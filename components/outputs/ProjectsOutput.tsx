@@ -19,6 +19,18 @@ const PROJECT_ASSETS: Record<string, string[]> = {
   ]
 };
 
+function projectIcon(projectId: string) {
+  if (projectId.toLowerCase() === "portfolio") {
+    return "/assets/terminal_logo.png";
+  }
+
+  if (projectId.toLowerCase() === "vent.ai") {
+    return "/assets/vent.ai_logo.png";
+  }
+  
+  return null; // Return null if no specific icon is found for the project
+}
+
 function ProjectLinks({ project }: { project: ProjectItem }) {
   const links = [
     ["GitHub", project.links.github],
