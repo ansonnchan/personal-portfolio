@@ -82,7 +82,7 @@ I care about crisp interfaces, resilient services, and tools that give people mo
     },
     {
       id: "unisa-research",
-      role: "Undergraduate Student Researcher",
+      role: "Undergraduate Research Assistant",
       company: "University of South Australia",
       location: "Adelaide, Australia",
       period: "June 2025 - August 2025",

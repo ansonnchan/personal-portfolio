@@ -41,7 +41,7 @@ export function useTerminal() {
 
     const { base } = splitCommand(commandText);
 
-    if (base === "clear") {
+    if (base === "clear") { //clear terminal histor y if user types 'clear'
       clearHistory();
       return;
     }
