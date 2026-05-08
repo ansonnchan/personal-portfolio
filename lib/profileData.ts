@@ -124,6 +124,24 @@ I care about crisp interfaces, resilient services, and tools that give people mo
       featured: true
     },
     {
+      id:"pear-programming",
+      name: "Pear Programming",
+      summary: "A browser-based collaborative code editor with real-time execution and AI-assisted coding features.",
+      technicalSummary: "Supports multi-user code editing, shared workspaces, live code execution, and context-aware AI assistance.",
+      "techStack": ["TypeScript", "Next.js", "Yjs", "WebSockets", "Monaco Editor", "Groq SDK"],
+      metrics: ["real-time collaboration", "AI-assisted coding", "multi-language support"],
+      links: {
+        github: "https://github.com/ansonnchan/PearProgramming",
+        live: "https://pear-programming.vercel.app",
+      },
+      built: [//no need for third bullet point
+      ],
+      problem: "Resilient synchronization and recovery mechanisms including realtime fallback syncing, room state persistence, stale-session cleanup, and cross-instance fanout.",
+      callout: "We're two pears in a pod, programming together. Also, the screenshots don't do it justice, go try it out live to see the real-time collaboration and AI features in action!",
+      featured: true
+    },
+      
+    {
       id: "vent.ai",
       name: "vent.ai",
       summary: "An AI-powered venting app. Talk to 5 different AI personalities. Crash out to your heart's content.",

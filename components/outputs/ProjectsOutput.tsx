@@ -16,6 +16,10 @@ const PROJECT_ASSETS: Record<string, string[]> = {
   "vent.ai": [
     "/assets/vent.ai_pic1.png",
     "/assets/vent.ai_pic2.png"
+  ],
+  "pear-programming": [
+    "/assets/pear-program-pic1.png",
+    "/assets/pear-program-pic3.png"
   ]
 };
 
@@ -27,34 +31,50 @@ function projectIcon(projectId: string) {
   if (projectId.toLowerCase() === "vent.ai") {
     return "/assets/vent.ai_icon.png";
   }
+
+  if (projectId.toLowerCase() === "pear-programming") {
+    return "/assets/pear-programming-favicon.png";
+  }
   
   return null; // Return null if no specific icon is found for the project
 }
 
 function ProjectLinks({ project }: { project: ProjectItem }) {
-  const links = [
-    ["GitHub", project.links.github],
-    ["Live", project.links.live]
-  ].filter((entry): entry is [string, string] => Boolean(entry[1]));
+  const githubLink = project.links.github;
+  const liveLink = project.links.live;
 
-  if (links.length === 0) {
+  if (!githubLink && !liveLink) {
     return null;
   }
 
   return (
-    <div className="mt-4 flex flex-wrap justify-end gap-2 text-xs">
-      {links.map(([label, href]) => (
+    <div className="mt-4 flex flex-wrap items-center justify-end gap-2 text-xs">
+      {githubLink ? (
         <a
-          key={label}
-          href={href}
+          href={githubLink}
           target="_blank"
           rel="noreferrer"
-          className="rounded-full border border-[var(--border)] px-2.5 py-1 text-[var(--link)] transition hover:border-[var(--bright-orange)] hover:bg-[var(--orange-soft)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
-          aria-label={`Open ${label} for ${project.name}`}
+          className="inline-flex items-center justify-center rounded-full border border-[var(--border)] bg-[var(--icon-bubble)] px-3 py-1.5 transition hover:border-[var(--bright-orange)] hover:bg-[var(--icon-bubble-hover)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+          aria-label={`Open GitHub for ${project.name}`}
         >
-          {label}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/assets/github_icon.png" alt="GitHub" className="h-13 w-12 object-contain" />
         </a>
-      ))}
+      ) : null}
+
+      {liveLink ? (
+        <a
+          href={liveLink}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--icon-bubble)] px-3 py-1.5 text-[var(--link)] transition hover:border-[var(--bright-orange)] hover:bg-[var(--icon-bubble-hover)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+          aria-label={`Open live site for ${project.name}`}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/assets/live.png" alt="Live site" className="h-4 w-4 object-contain" />
+          <span className="font-mono">See Live</span>
+        </a>
+      ) : null}
     </div>
   );
 }

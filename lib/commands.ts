@@ -155,6 +155,7 @@ function PortfolioTreeOutput() {
           "├── experience.txt",
           "├── projects/",
           "│   ├── portfolio",
+          "│   ├── pear_programming",
           "│   └── vent.ai",
           "├── skills/",
           "│   ├── ai_ml",
