@@ -137,7 +137,7 @@ I care about crisp interfaces, resilient services, and tools that give people mo
       built: [//no need for third bullet point
       ],
       problem: "Resilient synchronization and recovery mechanisms including realtime fallback syncing, room state persistence, stale-session cleanup, and cross-instance fanout.",
-      callout: "We're two pears in a pod, programming together. Also, the screenshots don't do it justice, go try it out live to see the real-time collaboration and AI features in action!",
+      callout: "We're two pears in a pod, programming together.",
       featured: true
     },
       
