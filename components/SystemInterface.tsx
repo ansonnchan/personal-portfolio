@@ -122,9 +122,12 @@ export function SystemInterface() {
                 <a
                   href={profile.resume}
                   download={profile.resumeFileName}
-                  className="rounded-md border border-[var(--accent)] bg-[var(--accent)] px-2.5 py-1.5 text-center font-semibold text-white transition hover:brightness-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-[var(--border)] bg-[var(--icon-bubble)] px-3 py-1.5 transition hover:border-[var(--bright-orange)] hover:bg-[var(--icon-bubble-hover)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+                  aria-label={`Download ${profile.resumeFileName}`}
                 >
-                  Download resume
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/assets/download.png" alt="Download" className="h-5 w-5 object-contain" />
+                  <span className="font-mono text-xs text-[var(--link)]">Resume</span>
                 </a>
               </div>
             </div>
