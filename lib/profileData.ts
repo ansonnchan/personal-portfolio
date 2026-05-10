@@ -145,7 +145,7 @@ I care about crisp interfaces, resilient services, and tools that give people mo
       id: "vent.ai",
       name: "vent.ai",
       summary: "An AI-powered venting app. Talk to 5 different AI personalities. Crash out to your heart's content.",
-      technicalSummary: "Supports five AI personalities with different response styles, from chill and casual to more direct and critical.",
+      technicalSummary: "Supports five AI personalities, from ancient and wise to straight up tiger mom energy",
       techStack: ["TypeScript", "React", "Next.js", "Groq SDK", "Upstash Redis"],
       metrics: ["40+ users", "5 AI personalities", "rate-limited AI inputs"],
       links: {
@@ -153,9 +153,10 @@ I care about crisp interfaces, resilient services, and tools that give people mo
         live: "https://ventai-web.vercel.app"
       },
       built: [
-        "Implemented Upstash Redis rate limiting to control usage and prevent abuse under concurrent requests",
+        "Designed a real-time crisis detection pipeline (lightweight classifier) that triggers a safe mode with calming responses and resources when users express distressing sentiments.",
+        "Implemented Upstash Redis rate limiting and progressive context compression to control usage and context window size while maintaining a responsive user experience.",
       ],
-      problem:         "Integrated Groq API with streamed responses for low-latency, real-time feedback",
+      problem:  "Integrated Groq API with streamed responses for low-latency, real-time feedback",
       callout: "If you wanna crash out, crash out here.",
       featured: true
     },
