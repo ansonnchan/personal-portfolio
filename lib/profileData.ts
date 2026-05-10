@@ -89,10 +89,10 @@ I care about crisp interfaces, resilient services, and tools that give people mo
       techStack: ["MATLAB", "Simulation", "Cellular automata", "Deterministic modeling"],
       metrics: ["large-scale analysis", "emergent behavior", "research tooling"],
       highlights: [
-        "LLM systems research under Dr. Terence Chan",
-        "Designed and implemented modular DAG-based pipelines for LLM inference",
-        "Optimized RAG chunking and retrieval workflows for large document processing",
-        "Reduced query latency with async retrieval and caching"
+        "RAG pipeline optimization for document retrieval under Dr. Terence Chan",
+        "Architected LangGraph pipelines to automate chunking, embedding, and reranking configurations",
+        "Reduced query latency with async retrieval and Redis caching",
+        "Developed Python evaluation scirpts to measure retrieval accuracy and pipeline performance across different configurations",
       ]
     }
   ],
