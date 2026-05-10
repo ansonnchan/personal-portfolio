@@ -1,11 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
-const birthday = new Date("2026-05-09T00:00:00-07:00").getTime();
+import { getNextBirthday } from "@/lib/birthday";
 
 function getRemaining() {
-  const remaining = Math.max(0, birthday - Date.now());
+  const remaining = Math.max(0, getNextBirthday().getTime() - Date.now());
   const seconds = Math.floor(remaining / 1000);
 
   return {
