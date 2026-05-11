@@ -97,10 +97,10 @@ I care about crisp interfaces, resilient services, and tools that give people mo
     }
   ],
   skills: {
-    languages: ["Python", "Java", "JavaScript/TypeScript", "C/C++", "SQL", "Assembly"],
-    frameworks: ["React", "Spring Boot", "Next.js", "FastAPI", "Flask", "three.js"],
-    devops: ["AWS", "Docker", "Kubernetes", "Git"],
-    machine_learning: ["PyTorch", "TensorFlow", "LangChain", "OpenCV", "Keras", "Hugging Face"]
+    languages: ["Python", "Java", "JavaScript", "TypeScript", "C++", "SQL"],
+    frameworks: ["Node.js", "Next.js", "React", "Django", "Spring Boot", "FastAPI", "GraphQL"],
+    devops: ["AWS", "Azure", "Docker", "Kubernetes", "Git", "CI/CD"],
+    machine_learning: ["PyTorch", "TensorFlow", "LangGraph", "LangChain", "OpenCV", "Hugging Face"]
   },
   projects: [
     {
